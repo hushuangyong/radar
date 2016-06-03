@@ -1,0 +1,13 @@
+/.buildpath
+/.project
+/.settings/
+/.idea
+/Application/Runtime
+/Application/Common/Conf/config.php
+/Application/Common/Conf/debug.php
+/index.php
+/Public/Uploads
+/ThinkPHP/Library/Vendor/phpqrcode/cache
+domenu.php
+/nbproject/private/
+/Public/upload/
