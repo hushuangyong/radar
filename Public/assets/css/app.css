@@ -513,17 +513,16 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .ld-task-buff li { display: inline-block; vertical-align: middle; text-align: center; font-size: 1.5rem; }
 .ld-task-buff li .ld-task-buff-line { margin-top: -15px; margin-left: -15px; width: 200%; max-width: 6rem; height: 2px; background: #57b1e6; overflow: hidden; }
 .ld-task-buff li span { display: block; border: 2px solid #b3afaa; width: 2rem; height: 2rem; text-align: center; color: #fff; line-height: 1.8rem; background: #c6c2bd; border-radius: 50%; }
-.ld-task-buff li strong { color: #666; font-weight: normal; margin-top: .5rem; margin-left: -5.5rem; display: block; }
+.ld-task-buff li strong { color: #666; font-weight: normal; margin-top: .5rem; display: block; }
 .ld-task-buff li.current span { background: #fff; color: #57b1e6; border: 2px solid #57b1e6; } 
 .ld-task-buff li.current strong { color: #57b1e6; }
 .ld-task-buff ul.ld-task-buff-fix { height: 5px; background: #c6c2bd; position: relative; margin-left: 8rem; }
 .ld-task-buff ul.ld-task-buff-fix li { float: left; width: 33.33%; margin-top: -0.8rem; text-align: center; font-size: 1.5rem; }
-.ld-task-buff ul.ld-task-buff-fix li:nth-last-child(1) { background: #fff; }
 .ld-task-buff ul.ld-task-buff-fix li span { display: block; border: 2px solid #b3afaa; width: 2rem; height: 2rem; text-align: center; color: #fff; line-height: 1.8rem; background: #c6c2bd; border-radius: 50%; }
-.ld-task-buff ul.ld-task-buff-fix li strong { color: #666; font-weight: normal; margin-top: .5rem; margin-left: -7.5rem; display: block; }
+.ld-task-buff ul.ld-task-buff-fix li strong { color: #666; font-weight: normal; margin-top: .5rem; display: block; }
 .ld-task-buff ul.ld-task-buff-fix li.current span { background: #fff; color: #57b1e6; border: 2px solid #57b1e6; } 
 .ld-task-sub { clear: both; text-align: center; margin: 0 3rem; padding-top: 1.5rem; }
-.ld-task-sub a { display: inline-block; border-radius: 2rem; width: 100%; height: 4rem; font-size: 2rem; line-height: 4rem; color: #fff; background: #4d56a3; }
+.ld-task-sub a { display: inline-block; border-radius: 1.5rem; width: 50%; height: 3rem; font-size: 1.5rem; line-height: 3rem; color: #4d56a3; background: #fff; border: 1px solid #4d56a3; }
 .ld-task-sub a.ld-btn-push { color: #4d56a3; background: #fff; border: 1px solid #4d56a3; }
 .ld-task-sub a.cannot { background: #fff; color: #999; border: 1px solid #666; margin: 0 0 10px 0; width: 50%;}
 /*.ld-task-sub a { display: inline-block; border-radius: 2rem; width: 100%; height: 4rem; font-size: 2rem; line-height: 4rem; color: #fff; background: #4d56a3; }*/
