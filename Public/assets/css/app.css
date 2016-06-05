@@ -427,7 +427,7 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .am-menu-dropdown1 .ld-nav-mask { position: fixed; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 900; display: none; }
 
 .ld-home { margin-bottom: 5rem; }
-.ld-task-item { min-height: 10rem; padding: 0 10px 5px; margin-top: 15px; border-bottom: 1px solid #eee; overflow: hidden; }
+.ld-task-item { min-height: 10rem; padding: 0 10px 5px; margin-top: 15px; border-bottom: 6px solid #eee; overflow: hidden; }
 .ld-task-item .ld-task-l { float: left; width: 20%; }
 .ld-task-item .ld-task-l dl { padding: 0 5px; text-align: center; }
 .ld-user-avatars { width: 100%; overflow: hidden; }
@@ -436,7 +436,7 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .ld-user-school a { color: #666; }
 .ld-user-time { color: #f76257; font-size: 1rem; margin-top: 0.5rem; }
 
-.ld-task-item-fix { padding-right: 20px; background: url(../img/icn-task-right.png) right center no-repeat; }
+.ld-task-item-fix { padding-right: 20px; border-bottom: 1px solid #eee; background: url(../img/icn-task-right.png) right center no-repeat; }
 
 .ld-task-r { float: right; width: 78%; padding-left: 2%; margin-bottom: 10px; }
 .ld-task-title { height: 5.0rem; margin-bottom: 0.5rem; overflow: hidden; }
@@ -487,15 +487,15 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .ld-task-l-btn span { display: block; width: 100%; height: 1.2rem; font-size: 1.2rem; line-height: 1.2rem; margin-top: 0.3rem; color: #999; overflow: hidden; }
 .ld-task-l-btn strong { display: block; font-weight: normal; font-size: 1.6rem; color: #f34e5e; }
 
-.ld-task-info { height: 4rem; font-size: 1.5rem; line-height: 2rem; margin: 0 0 1rem; color: #666; overflow: hidden; }
+.ld-task-info { display: block; height: 4rem; font-size: 1.5rem; line-height: 2rem; margin: 6px 0; color: #666; overflow: hidden; }
 .ld-task-imgs { overflow: hidden; }
 .ld-task-imgs li { float: left; width: 23%; margin: 0 1%; text-align: center; }
-.ld-task-imgs li img { max-width: 100%; height: 65px; padding: 2px; border: 1px solid #eee; border-radius: 0.5rem; }
+.ld-task-imgs li img { width: 100%; max-width: 100%; height: 65px; padding: 2px; border: 1px solid #eee; border-radius: 0.5rem; }
 
 .ld-home-footer { background: #f7f7f7; padding: 0; position: fixed; bottom: 0; left: 0; z-index: 99; width: 100%; }
 .ld-home-footer .ld-home-task-s { float: left; font-size: 1.8rem; line-height: 2.5rem; color: #333; }
 .ld-home-footer .ld-home-task-s strong { color: #f34e5e; font-weight: normal; }
-.ld-home-footer .ld-home-task-b, .ld-home-task-a {float: right; width: 8rem; text-align: center; height: 2.5rem; line-height: 2.5rem; font-size: 1.8rem; color: #fff; background: #4d56a3; border-radius: 1.25rem; }
+.ld-home-footer .ld-home-task-b, .ld-home-task-a {float: right; width: 75px; text-align: center; height: 24px; line-height: 24px; font-size: 1.8rem; color: #fff; background: #4d56a3; border-radius: 12px; }
 .ld-home-task-a:hover{ color: #f60}
 
 .ld-login-box { background: url(../img/login/login_bg.jpg) no-repeat; background-size: cover; margin-top: 0; padding-top: 2rem; padding-bottom: 2rem; }
@@ -574,5 +574,5 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 
 .ld-login-btn { margin: 2rem auto; width: 80%; text-align: center; }
 .ld-login-btn a  { display: inline-block; border-radius: 2rem; width: 100%; height: 4rem; font-size: 2rem; line-height: 4rem; color: #fff; background: #f76257; }  
-.get_order { height: 3.0rem; margin-bottom: -1rem;}
+.get_order { height: 25px; }
 .can_not_order { float: right; width: 6rem; color: #999; font-size: 1.5rem;}

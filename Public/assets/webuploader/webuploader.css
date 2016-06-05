@@ -95,7 +95,7 @@
 }
 
 
-#filePicker2 { display: inline-block; background: url(../img/icn-uploadadd.png) center center no-repeat; width: 24%; min-height: 100px; }
+#filePicker2 { display: inline-block; background: url(../img/icn-uploadadd.png) center center no-repeat; background-size: 100%; width: 24%; min-height: 100px; }
 
 #uploader .filelist:after {
     content: '';
