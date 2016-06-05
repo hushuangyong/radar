@@ -436,7 +436,7 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .ld-user-school a { color: #666; }
 .ld-user-time { color: #f76257; font-size: 1rem; margin-top: 0.5rem; }
 
-.ld-task-item-fix { padding-right: 20px; border-bottom: 1px solid #eee; background: url(../img/icn-task-right.png) right center no-repeat; }
+.ld-task-item-fix { padding-right: 20px; border-bottom: 1px solid #eee; background: url(../img/icon/icn-rightside.png) right center no-repeat; }
 
 .ld-task-r { float: right; width: 78%; padding-left: 2%; margin-bottom: 10px; }
 .ld-task-title { height: 5.0rem; margin-bottom: 0.5rem; overflow: hidden; }

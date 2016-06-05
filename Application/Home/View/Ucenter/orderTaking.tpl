@@ -18,10 +18,10 @@
                         <div class="ld-task-l">
                             <dl>
                                 <dt class="ld-user-avatars"><a href="{$list.sgkeyUrl}"><img src="__STATIC__/assets/img/temp/img-user.jpg"/></a></dt>
-                                <dd class="ld-task-l-btn">
+                                <!--<dd class="ld-task-l-btn">
                                     奖 励
                                     <strong>{$list['quest_reward']}</strong>
-                                </dd>
+                                </dd>-->
                             </dl>
                         </div>
                         <div class="ld-task-r" query_url="{$list['projectDetail']}">
@@ -42,6 +42,7 @@
                                 </div>
                             </div>
                             <p class="ld-task-t"  onclick="goProjectDetail('{$list.projectDetail}');">{$list.quest_title}</p>
+                            <p class="ld-task-t"><span>状态：{$list.status_name}</span></p>
                             <!--<p class="ld-task-info-m"  onclick="goProjectDetail('{$list.projectDetail}');">{$list.quest_intro} </p>
                             <ul class="ld-task-imgs">
                                 <foreach name="list['userPublishedimg']" item="userImg" key="kImg" >
