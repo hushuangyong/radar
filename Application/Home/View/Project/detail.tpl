@@ -70,7 +70,7 @@
         </ul>
         <div class="ld-task-sub">
             <if condition=" $user_info['id'] eq $userGeted['public_user_id'] ">
-                <eq name="userGeted['quest_status']" value="1"><a href="{$userGeted['editProject']}" style="width:50%;" title="编辑任务">编辑任务</a><a href="javascript:void(0);" style="width:50%;" onclick='closeQuest("{$userGeted['quest_id']}", "{:U('Ucenter/closeQuest')}");' title="关闭任务">关闭任务</a></eq>
+                <eq name="userGeted['quest_status']" value="1"><a href="{$userGeted['editProject']}" title="编辑任务">编辑任务</a><a href="javascript:void(0);" onclick='closeQuest("{$userGeted['quest_id']}", "{:U('Ucenter/closeQuest')}");' title="关闭任务">关闭任务</a></eq>
                 <eq name="userGeted['quest_status']" value="2"><a href="javascript:void(0);" class="cannot" title="不可编辑">编辑任务</a><a href="javascript:void(0);" class="cannot" title="不可关闭">关闭任务</a></eq>
                 <equal name="userGeted.quest_status" value="3"><a href="javascript:void(0);" onclick='confirmToFinish("{$userGeted['quest_id']}", "{:U('Ucenter/confirmOrder')}");' title="">确认接收者完成</a></equal>
                 <else />
