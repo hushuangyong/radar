@@ -26,7 +26,9 @@ class IndexController extends Controller {
         $refer = $_SERVER['HTTP_REFERER'];
         cookie('refer', $refer); //设置 来源地址
         trace($refer, '设置@Referer@');
-        if (!empty(cookie('radar_userid'))) {
+        $c_userid = cookie('radar_userid');
+        $s_userid = session('user_id');
+        if (!empty($c_userid) && empty($s_userid)) {
             session('user_id', cookie('user_id'));
         }
         $this->user_id = session('user_id');
@@ -187,7 +189,7 @@ class IndexController extends Controller {
                             $result['msg'] = 'OK';
                             $result['info'] = $returnUrl ? $returnUrl : U('Ucenter/index');
                             session('user_id', $userInfo['id']);
-                            cookie('radar_userid', $userInfo['id']);
+                            cookie('radar_userid', $userInfo['id'], 3600 * 24 * 7);
                             IndexService::updateUserInfo($mobile, array('last_login' => time(), 'login_ip' => ip_address())); //登录成功后，更新用户信息
                         } else {
                             $result['code'] = 501;
