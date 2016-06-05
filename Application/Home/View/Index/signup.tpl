@@ -6,12 +6,12 @@
             <h2><img src="__STATIC__/assets/img/login/logo.png"/></h2>
             <ul class="am-margin-sm">
                 <li class="ld-login-row">
-                    <input type="tel" name="mobile" id="mobile" value="" maxlength="11" />
+                    <input type="tel" name="mobile" id="mobile" value="" maxlength="11" placeholder="请输入手机号" />
                     <img src="__STATIC__/assets/img/login/iphone.png" class="ld-login-row-img"/>
                     <img src="__STATIC__/assets/img/login/login_close.png" width="20" class="ld-login-close am-hide"/>
                 </li>
                 <li class="ld-login-row">
-                    <input type="password" name="password" id="password" value=""  class="am-login-btn11 am-colorfff" maxlength="18" required />
+                    <input type="password" name="password" id="password" value=""  class="am-login-btn11 am-colorfff" maxlength="18" required placeholder="请设置密码（不低于6位）" />
                     <img src="__STATIC__/assets/img/login/password.png" class="ld-login-row-img"/>
                     <img src="__STATIC__/assets/img/login/login_close.png" width="20" class="ld-login-close am-hide"/>
                 </li>
