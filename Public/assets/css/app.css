@@ -439,11 +439,11 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .ld-task-item-fix { padding-right: 20px; border-bottom: 1px solid #eee; background: url(../img/icon/icn-rightside.png) right center no-repeat; }
 
 .ld-task-r { float: right; width: 78%; padding-left: 2%; margin-bottom: 10px; }
-.ld-task-title { height: 5.0rem; margin-bottom: 0.5rem; overflow: hidden; }
+.ld-task-title { margin-bottom: 0.5rem; overflow: hidden; }
 .ld-task-title h4 { float: left; width: 70%; font-size: 1.8rem; font-weight: normal; margin-bottom: 1rem; }
 .ld-task-title h4 .ld-task-h4 { display: block; width: 100%; line-height: 2rem; height: 2rem; color: #333; overflow: hidden; }
 .ld-task-title h4 .ld-task-tips { font-size: 1.5rem; font-style: normal;}
-.ld-task-title h4 span { display: block; margin-top: 0.5rem; font-size: 1.2rem; line-height: 1.5rem; }
+.ld-task-title h4 span { display: block; margin-top: 2px; font-size: 1.2rem; line-height: 1.5rem; }
 .ld-task-title h4 span a { display: inline-block; margin-right: 10px; color: #666; }
 .ld-task-title h4 span .ld-like { color: #4d56a3; }
 
