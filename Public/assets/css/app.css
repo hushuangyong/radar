@@ -472,7 +472,7 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 
 .ld-task  	{ position: relative; margin-bottom: 5rem; }
 .ld-task .ld-task-end { position: absolute; z-index: 2; left: 3rem; top: 2rem; width: 8rem; height: 8rem; background: url(../img/icon/icn-end.png) 0 0 no-repeat; background-size: cover; } 
-.ld-task-time { margin-top: -10px; font-size: 1.2rem; color: #f34e5e; }
+.ld-task-time { margin-top: -12px; font-size: 1.2rem; color: #f34e5e; }
 .ld-task-time em { font-style: normal; }
 .ld-task-time-end { font-size: 1.2rem; color: #666; }
 .ld-task-time-end em { font-style: normal; }
@@ -503,7 +503,7 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .ld-login-box h2 img { width: 70%; }
 
 .ld-task-info-m-t { font-size: 1.5rem; font-weight: 700; margin: 0; padding: 0; }
-.ld-task-info-m { font-size: 1.2rem; margin: 2px 0 0 0; padding: 0; }
+.ld-task-info-m { font-size: 1.2rem; margin: 0; padding: 0; }
 .ld-task-addr { font-size: 1.5rem; margin: 1rem 0; padding: 0; }
 .ld-task-t { font-size: 1.5rem; margin: 0 0 5px 0; padding: 0; }
 .ld-task-blank5 { background: #f2f2f2; height: 8px; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
