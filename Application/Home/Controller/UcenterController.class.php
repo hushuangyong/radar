@@ -349,12 +349,12 @@ class UcenterController extends Controller {
                 if ($title && $range && $rclass && $userAddress && $content && $award && $checkval) {
                     //验证处理参数
                     $title = trim($title);
-                    if (mb_strlen($title) > 15) {
+                    if (mb_strlen($title) > 30) {
                         $this->ajaxreturn(array('code' => '4001', 'msg' => '标题不超过15个字符！您已经输入了' . mb_strlen($title) . '个字符。'));
                         exit();
                     }
                     $content = trim($content);
-                    if (mb_strlen($content) > 140) {
+                    if (mb_strlen($content) > 280) {
                         $this->ajaxreturn(array('code' => '4002', 'msg' => '任务描述不超过140个字符！您已经输入了' . mb_strlen($award) . '个字符。'));
                         exit();
                     }

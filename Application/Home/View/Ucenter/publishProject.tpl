@@ -5,7 +5,7 @@
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-		<meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="telephone=no" />
         <title>校园雷达-发布项目</title>
         <meta name="renderer" content="webkit">
         <meta http-equiv="Cache-Control" content="no-siteapp"/>
@@ -74,8 +74,8 @@
                             </div>
                         </li>
                         <li>
-                        	<span class="ld-task-from-l">奖励类型</span>
-                        	<div class="ld-task-from-r">
+                            <span class="ld-task-from-l">奖励类型</span>
+                            <div class="ld-task-from-r">
                                 <label> <input type="radio" name="docInlineRadio" id="type_prize" value="1" <eq name="userPublished['quest_reward_type']" value="1">checked="checked"</eq> /> 现金奖励</label>
                                 <label><input type="radio" name="docInlineRadio" id="type_other" value="2" <eq name="userPublished['quest_reward_type']" value="2">checked="checked"</eq> /> 其他奖励</label>
                             </div>
@@ -83,8 +83,8 @@
                             <span class="ld-task-from-l"><input type="radio" name="docInlineRadio" id="type_other" value="2" <eq name="userPublished['quest_reward_type']" value="2">checked="checked"</eq> /><label for="">其他奖励</label></span>-->
                         </li>
                         <li class="am-hide">
-                        	<div class="ld-task-from-r">
-                                <input class="ld-input" type="number" id="prize" placeholder="请输入金额" onkeyup="value=value.replace(/^0*(\d*).*$/,'$1')" value="{$userPublished.quest_reward}" />
+                            <div class="ld-task-from-r">
+                                <input class="ld-input" type="number" id="prize" placeholder="请输入金额" onkeyup="value = value.replace(/^0*(\d*).*$/, '$1')" value="{$userPublished.quest_reward}" />
                             </div>
                         </li>
                         <li class="am-hide">
@@ -130,7 +130,7 @@
 
                         </li>
                     </ul>
-                   
+
                 </form>
             </div>
         </div>
@@ -189,6 +189,11 @@
 
                 //点击下一步
                 $('#nextstep').click(function () {
+                    $file = $('#fileCount').html();
+                    if ($file != undefined) {
+                        alert("您还有" + $file + "张图片没有上传，\n请先上传图片后再发布！");
+                        return false;
+                    }
                     do_publish();
                 });
 
