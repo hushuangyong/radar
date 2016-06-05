@@ -26,6 +26,11 @@ class IndexController extends Controller {
         $refer = $_SERVER['HTTP_REFERER'];
         cookie('refer', $refer); //设置 来源地址
         trace($refer, '设置@Referer@');
+        $c_userid = cookie('radar_userid');
+        $s_userid = session('user_id');
+        if (!empty($c_userid) && empty($s_userid)) {
+            session('user_id', cookie('user_id'));
+        }
         $this->user_id = session('user_id');
         $this->assign('topNav', array('newest' => U('Index/radar'), 'study' => U('Index/radar', array('type' => 1)), 'purchasing' => U('Index/radar', array('type' => 2)), 'errands' => U('Index/radar', array('type' => 3)), 'second-hand' => U('Index/radar', array('type' => 4)), 'other' => U('Index/radar', array('type' => 5)))); #顶部导航
         $this->assign('publish', U('Ucenter/publishProject')); #发布
@@ -125,6 +130,7 @@ class IndexController extends Controller {
                                 $result['code'] = 200;
                                 $result['msg'] = 'OK';
                                 session('user_id', $reg);
+                                cookie('radar_userid', $reg, 3600 * 24 * 7);
                                 session('user_regist_mobile_' . $status, null);
                                 session('user_regist_school_' . $status, null);
                                 session('user_regist_password_' . $status, null);
@@ -183,6 +189,7 @@ class IndexController extends Controller {
                             $result['msg'] = 'OK';
                             $result['info'] = $returnUrl ? $returnUrl : U('Ucenter/index');
                             session('user_id', $userInfo['id']);
+                            cookie('radar_userid', $userInfo['id'], 3600 * 24 * 7);
                             IndexService::updateUserInfo($mobile, array('last_login' => time(), 'login_ip' => ip_address())); //登录成功后，更新用户信息
                         } else {
                             $result['code'] = 501;
@@ -207,6 +214,7 @@ class IndexController extends Controller {
      */
     public function logout() {
         session(null);
+        cookie('radar_userid', NULL);
         if (IS_AJAX) {
             $result['code'] = 200;
             $result['msg'] = 'OK';

@@ -17,6 +17,11 @@ class ProjectController extends Controller {
      * 初始化
      */
     public function _initialize() {
+        $c_userid = cookie('radar_userid');
+        $s_userid = session('user_id');
+        if (!empty($c_userid) && empty($s_userid)) {
+            session('user_id', cookie('user_id'));
+        }
         $this->user_id = session('user_id');
         $this->assign('user_id', $this->user_id);
 #公共导航
