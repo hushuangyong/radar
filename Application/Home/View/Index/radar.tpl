@@ -74,7 +74,10 @@
                         </div>
                         <div class="ld-task-time timer">倒计时：<eq name="list[0]['quest_status']" value="4">--:--:--<else /><span class="leave{$list[0]['quest_id']}" id="leave{$list[0]['quest_id']}" remind="{$list[0].dateline}">正在计时</span><script> $(function (){showTime("{$list[0]['quest_id']}");}
                             );</script></eq></div>
-                        <a class="ld-task-info" href="{$list[0]['projectDetail']}" title="{$list[0]['quest_title']}"><b>{$list[0]['quest_title']}</b><br />{$list[0]['quest_intro']} </a>
+                        <a class="ld-task-info" href="{$list[0]['projectDetail']}" title="{$list[0]['quest_title']}">
+                        	<p class="ld-task-info-m-t">{$list[0]['quest_title']}</p>
+                			<p class="ld-task-info-m">{$list[0]['quest_intro']} </p>
+                        </a>
                         <ul class="ld-task-imgs">
                             <foreach name="list[0]['userPublishedimg']" item="userImg" key="kImg" >
                                 <li><a <eq name="userImg['pic_origin']" value="">href="javascript:void(0);"<else/>href="__UPLOAD__{$userImg['pic_origin']}" rel="group"</eq>  title="{$list[0]['quest_title']}"><img src="__UPLOAD__<eq name="userImg['pic']" value="">{$userImg['nonepic']}<else/>{$userImg['pic']}</eq>" /></a></li>
@@ -192,7 +195,7 @@
                                     html += "<script type='text/javascript' >showTime('" + resultArr[i][0]['quest_id'] + "');<\/script>";
                                 }
                                 html += '</div>';
-                                html += '<a class="ld-task-info" href="' + resultArr[i][0]['projectDetail'] + '" title="' + resultArr[i][0]['quest_title'] + '"><b>' + resultArr[i][0]['quest_title'] + '</b><br />' + resultArr[i][0]['quest_intro'] + ' </a><ul class="ld-task-imgs">';
+                                html += '<a class="ld-task-info" href="' + resultArr[i][0]['projectDetail'] + '" title="' + resultArr[i][0]['quest_title'] + '"><p class="ld-task-info-m-t">' + resultArr[i][0]['quest_title'] + '</p><p class="ld-task-info-m">' + resultArr[i][0]['quest_intro'] + ' </p></a><ul class="ld-task-imgs">';
                                 for (var j = 0; j < resultArr[i][0]['userPublishedimg'].length; j++) {
                                     if (resultArr[i][0]['userPublishedimg'][j]['pic_origin']) {
                                         html += '<li><a href="' + resultArr[i][0]['userPublishedimg'][j]['pic_domain'] + resultArr[i][0]['userPublishedimg'][j]['pic_origin'] + '" class="photo_list" rel="group"> <img src = "' + resultArr[i][0]['userPublishedimg'][j]['pic_domain'] + resultArr[i][0]['userPublishedimg'][j]['pic'] + '" /></a></li>'; //项目图片 有大图

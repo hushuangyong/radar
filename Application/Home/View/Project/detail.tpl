@@ -27,6 +27,7 @@
                         <strong>{$userGeted.quest_reward}</strong>
                     </div>
                 </div>
+                <p class="ld-task-info-m-t">{$userGeted.quest_title}</p>
                 <p class="ld-task-info-m">{$userGeted.quest_intro}</p>
                 <p class="ld-task-addr">交货地址：{$userGeted.quest_address}<if condition="$user_info['id'] && ($userGeted['public_user_id'] eq $user_info['id']) && ($userGeted['quest_status'] gt 1)"><br />接单人：{$userGeted['order_username']|phone_number_mask}<br />手机号：{$userGeted['order_username']}</if></p>
                 <ul class="ld-task-imgs">
