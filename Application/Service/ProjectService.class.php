@@ -48,7 +48,7 @@ class ProjectService extends Model {
             } else if (2 == $result[$i]['quest_reward_type']) {
                 $array[$result[$i]['quest_id']][0]['quest_reward'] = $result[$i]['quest_reward']; #其他奖励
             }
-            $array[$result[$i]['quest_id']][0]['quest_intro'] = cn_substr($result[$i]['quest_intro'], 0, 20); #项目介绍
+            $array[$result[$i]['quest_id']][0]['quest_intro'] = cn_substr($result[$i]['quest_intro'], 0, 40); #项目介绍
             $array[$result[$i]['quest_id']][0]['public_username'] = phone_number_mask($result[$i]['public_username']); #发布人的用户名
             $array[$result[$i]['quest_id']][0]['projectDetail'] = U('Project/detail', array('pubid' => $result[$i]['quest_id'])); #项目详细页
             $array[$result[$i]['quest_id']][0]['follow'] = UcenterService::isFollow(session('user_id'), $result[$i]['public_user_id']); #是否关注
