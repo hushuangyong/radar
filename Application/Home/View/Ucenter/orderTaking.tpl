@@ -19,8 +19,8 @@
                             <dl>
                                 <dt class="ld-user-avatars"><a href="{$list.sgkeyUrl}"><img src="__STATIC__/assets/img/temp/img-user.jpg"/></a></dt>
                                 <dd class="ld-task-l-btn">
-                                	奖 励
-                                <strong>{$list['quest_reward']}</strong>
+                                    奖 励
+                                    <strong>{$list['quest_reward']}</strong>
                                 </dd>
                             </dl>
                         </div>
@@ -29,16 +29,16 @@
                                 <h4>
                                     <a class="ld-task-h4" href="{$list.sgkeyUrl}" title="{$list.quest_title}">{$list['public_username']}<img class="ld-user-lv" src="__STATIC__/assets/img/icn-user-lv.png"/></a>
                                     <span class="<eq name='list.quest_status' value='4'>ld-task-time-end<else />ld-task-time</eq>">
-                                        时效倒计时：<em class="leave{$list['quest_id']}" id="leave{$list['quest_id']}" remind="{$list.dateline}">正在计时</em><script> $(function (){showTime("{$list['quest_id']}");}
-                                            );</script>
+                                        倒计时：<eq name='list.quest_status' value='4'>--:--:--<else /><em class="leave{$list['quest_id']}" id="leave{$list['quest_id']}" remind="{$list.dateline}">正在计时</em><script> $(function (){showTime("{$list['quest_id']}");}
+                                            );</script></eq>
                                     </span>
                                 </h4>
                                 <div class="ld-task-btn">
-                                	<if condition="$list[0]['quest_status'] neq 1 OR ($list[0]['order_user_id'] == $user_id && $user_id)">
-	                                    <a href="javascript:void(0);" name="" id="disItem_{$list[0]['quest_id']}" class="can_not_order" disabled="disabled" >已被抢</a>
-	                                    <else />
-	                                    <a href="javascript:void(0);" id="checkbox_c{$list[0]['quest_id']}" class="ld-home-task-a" quest_id="{$list[0]['quest_id']}" quest_reward="{$list[0]['quest_reward']}">抢单</a>
-	                                </if>
+                                    <if condition="$list[0]['quest_status'] neq 1 OR ($list[0]['order_user_id'] == $user_id && $user_id)">
+                                        <a href="javascript:void(0);" name="" id="disItem_{$list[0]['quest_id']}" class="can_not_order" disabled="disabled" >已被抢</a>
+                                        <else />
+                                        <a href="javascript:void(0);" id="checkbox_c{$list[0]['quest_id']}" class="ld-home-task-a" quest_id="{$list[0]['quest_id']}" quest_reward="{$list[0]['quest_reward']}">抢单</a>
+                                    </if>
                                 </div>
                             </div>
                             <p class="ld-task-t"  onclick="goProjectDetail('{$list.projectDetail}');">{$list.quest_title}</p>

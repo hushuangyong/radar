@@ -14,12 +14,12 @@
                     <h4>
                         <a class="ld-task-h4" href="{$userGeted.detail_url}">{$userGeted['public_username']}<img class="ld-user-lv" src="__STATIC__/assets/img/icn-user-lv.png"/></a>
                         <span class="ld-task-time">
-                            时效倒计时：<em class="leave{$userGeted['quest_id']}" id="leave{$userGeted['quest_id']}" remind="{$userGeted.dateline}">正在计时</em>
+                            倒计时：<eq name="userGeted['quest_status']" value="4">--:--:--<else /><em class="leave{$userGeted['quest_id']}" id="leave{$userGeted['quest_id']}" remind="{$userGeted.dateline}">正在计时</em>
                             <script>
                                 $(function () {
                                     showTime("{$userGeted['quest_id']}");
                                 });
-                            </script>
+                            </script></eq>
                         </span>
                     </h4>
                     <div class="ld-task-btn">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <p class="ld-task-info-m">{$userGeted.quest_intro}</p>
-                <p class="ld-task-addr">交货地址：{$userGeted.quest_address}<if condition="$user_info['id'] && ($userGeted['public_user_id'] eq $user_info['id']) "><br />接单人：{$userGeted['order_username']|phone_number_mask}<br />手机号：{$userGeted['order_username']}</if></p>
+                <p class="ld-task-addr">交货地址：{$userGeted.quest_address}<if condition="$user_info['id'] && ($userGeted['public_user_id'] eq $user_info['id']) && ($userGeted['quest_status'] gt 1)"><br />接单人：{$userGeted['order_username']|phone_number_mask}<br />手机号：{$userGeted['order_username']}</if></p>
                 <ul class="ld-task-imgs">
                     <foreach name="userGeted['userPublishedimg']" item="userImg" key="kImg" >
                         <li><a href="{$userGeted.detail_url}"><img src="__UPLOAD__/{$userImg['pic']}"/></a></li>
