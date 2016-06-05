@@ -265,7 +265,7 @@ jQuery(function() {
         var text = '', stats;
 
         if ( state === 'ready' ) {
-            text = '选中' + fileCount + '张图片，共' +
+            text = '选中<span id="fileCount">' + fileCount + '</span>张图片，共' +
                     WebUploader.formatSize( fileSize ) + '。';
         } else if ( state === 'confirm' ) {
             stats = uploader.getStats();

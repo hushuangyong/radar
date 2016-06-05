@@ -30,7 +30,7 @@
         <ul>
             <li>
                 <a href="{$pageUrl['published']}">
-                    <img class="ld-list-l" src="__STATIC__/assets/img/icon/icn-user1.png"/>已发布
+                    <img class="ld-list-l" src="__STATIC__/assets/img/icon/icn-user1.png"/>我的发布
                     <img class="ld-list-r" src="__STATIC__/assets/img/icon/icn-rightside.png"/>
                 </a>
             </li>
