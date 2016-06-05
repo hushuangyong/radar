@@ -512,7 +512,7 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .ld-task-buff ul { position: relative; width: 90%; margin: 0 auto; }
 .ld-task-buff li { display: inline-block; vertical-align: middle; text-align: center; font-size: 1.5rem; }
 .ld-task-buff li .ld-task-buff-line { margin-top: -15px; margin-left: -15px; width: 200%; max-width: 6rem; height: 2px; background: #57b1e6; overflow: hidden; }
-.ld-task-buff li span { display: block; border: 2px solid #b3afaa; width: 2rem; height: 2rem; text-align: center; color: #fff; line-height: 1.8rem; background: #c6c2bd; border-radius: 50%; }
+.ld-task-buff li span { display: block; border: 2px solid #b3afaa; width: 2rem; height: 2rem; text-align: center; color: #fff; line-height: 1.8rem; background: #c6c2bd; border-radius: 50%; margin: 0 auto; }
 .ld-task-buff li strong { color: #666; font-weight: normal; margin-top: .5rem; display: block; }
 .ld-task-buff li.current span { background: #fff; color: #57b1e6; border: 2px solid #57b1e6; } 
 .ld-task-buff li.current strong { color: #57b1e6; }
