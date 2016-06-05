@@ -18,12 +18,12 @@
                     <h4>
                         <a class="ld-task-h4" href="{$userGeted.detail_url}">{$userGeted['public_username']}<img class="ld-user-lv" src="__STATIC__/assets/img/icn-user-lv.png"/></a>
                         <span class="ld-task-time">
-                            时效倒计时：<em class="leave{$userGeted['quest_id']}" id="leave{$userGeted['quest_id']}" remind="{$userGeted.dateline}">正在计时</em>
+                            倒计时：<eq name='userGeted.quest_status' value='4'>--:--:--<else /><em class="leave{$userGeted['quest_id']}" id="leave{$userGeted['quest_id']}" remind="{$userGeted.dateline}">正在计时</em>
                             <script>
                                 $(function () {
                                     showTime("{$userGeted['quest_id']}");
                                 });
-                            </script>
+                            </script></eq>
                         </span>
                     </h4>
                     <div class="ld-task-btn">
