@@ -369,33 +369,15 @@ function mkDirs($dir) {
 }
 
 function dtd_encrypt($input) {//数据加密
-    $key = 'ci3t56afB';
-    $size = mcrypt_get_block_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_ECB);
-    $input = pkcs5_pad($input, $size);
-    $key = str_pad($key, 24, '0');
-    $td = mcrypt_module_open(MCRYPT_RIJNDAEL_128, '', MCRYPT_MODE_ECB, '');
-    $iv = @mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
-    @mcrypt_generic_init($td, $key, $iv);
-    $data = mcrypt_generic($td, $input);
-    mcrypt_generic_deinit($td);
-    mcrypt_module_close($td);
+    $data = trim($input);
     $data = base64_encode($data);
-    return $data;
+    return $input;
 }
 
 function dtd_decrypt($encrypted) {//数据解密
-    $key = 'ci3t56afB';
-    $encrypted = base64_decode($encrypted);
-    $key = str_pad($key, 24, '0');
-    $td = mcrypt_module_open(MCRYPT_RIJNDAEL_128, '', MCRYPT_MODE_ECB, '');
-    $iv = @mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
-    $ks = mcrypt_enc_get_key_size($td);
-    @mcrypt_generic_init($td, $key, $iv);
-    $decrypted = mdecrypt_generic($td, $encrypted);
-    mcrypt_generic_deinit($td);
-    mcrypt_module_close($td);
-    $y = pkcs5_unpad($decrypted);
-    return $y;
+    $encrypted = trim($encrypted);
+    $data = base64_decode($encrypted);
+    return $encrypted;
 }
 
 function pkcs5_pad($text, $blocksize) {
