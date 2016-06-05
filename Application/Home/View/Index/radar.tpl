@@ -39,7 +39,7 @@
                 <a href="{$myCenter}"><img src="__STATIC__/assets/img/icn-nav-b2.png"/>我的</a>
             </li>
             <eq name="user_id" value="">
-           		<li class="ld-nav-btn"><a href="{$signin}">登录</a><a href="{$signup}">注册</a></li>
+            <li class="ld-nav-btn"><a href="{$signin}">登录</a><a href="{$signup}">注册</a></li>
             </eq>
         </ul>
         <div class="ld-nav-mask"></div>
@@ -72,8 +72,8 @@
 
                             </div>
                         </div>
-                        <div class="ld-task-time timer">倒计时：<span class="leave{$list[0]['quest_id']}" id="leave{$list[0]['quest_id']}" remind="{$list[0].dateline}">正在计时</span><script> $(function (){showTime("{$list[0]['quest_id']}");}
-                            );</script></div>
+                        <div class="ld-task-time timer">倒计时：<eq name="list[0]['quest_status']" value="4">--:--:--<else /><span class="leave{$list[0]['quest_id']}" id="leave{$list[0]['quest_id']}" remind="{$list[0].dateline}">正在计时</span><script> $(function (){showTime("{$list[0]['quest_id']}");}
+                            );</script></eq></div>
                         <a class="ld-task-info" href="{$list[0]['projectDetail']}" title="{$list[0]['quest_title']}"><b>{$list[0]['quest_title']}</b><br />{$list[0]['quest_intro']} </a>
                         <ul class="ld-task-imgs">
                             <foreach name="list[0]['userPublishedimg']" item="userImg" key="kImg" >
@@ -98,7 +98,13 @@
                 </div>
             </foreach>
         </empty>
-
+		 <div class="ld-left-side">
+	        <ul>
+	            <li id="ld-go-top"><a href="javascript:;"><img src="__STATIC__/assets/img/icon/icn-top.png"/> <span>顶部</span></a></li>
+	            <li><a href="{$pageUrl['publish']}"><img src="__STATIC__/assets/img/icon/icn-fb.png"/> <span>发布</span></a></li>
+            	<li><a href="{$pageUrl['myGetted']}"><img src="__STATIC__/assets/img/icon/icn-wd.png"/> <span>我的</span></a></li>
+	        </ul>
+	    </div>
     </div>
     <div class="operation" style="position: relative;text-align: center;bottom: 3.4em; height: 30px; line-height: 30px; background: #f3f5f9;">
         <a href="javascript:void(0);" class="load_more" style="display: block;" title="点击加载">加载更多</a>
@@ -169,7 +175,7 @@
                             for (var i = 0; i < resultArr.length; i++) {
                                 html += '<div class="ld-task-item" project_id="' + resultArr[i][0]['quest_id'] + '"><div class="ld-task-l"><dl><dt class="ld-user-avatars"><a href="' + resultArr[i][0]['projectDetail'] + '"><img src="/Public/assets/img/temp/img-user.jpg"/></a></dt><dd class="ld-task-l-btn"><a href="#' + resultArr[i][0]['projectDetail'] + '" >奖 励<strong>' + resultArr[i][0]['quest_reward'] + '</strong></a></dd><dd class="">';
                                 html += '</dd></dl></div>';
-                                html += '<div class="ld-task-r"><div class="ld-task-title get_order"><h4><a class="ld-task-h4" href="' + resultArr[i][0]['projectDetail'] + '">' +  resultArr[i][0]['public_username'] + '<img class="ld-user-lv" src="/Public/assets/img/icn-user-lv.png"><em class="ld-task-tips">' + resultArr[i][0]['s_name'] + '</em></a>';
+                                html += '<div class="ld-task-r"><div class="ld-task-title get_order"><h4><a class="ld-task-h4" href="' + resultArr[i][0]['projectDetail'] + '">' + resultArr[i][0]['public_username'] + '<img class="ld-user-lv" src="/Public/assets/img/icn-user-lv.png"><em class="ld-task-tips">' + resultArr[i][0]['s_name'] + '</em></a>';
 
                                 html += '</h4><div class="ld-task-btn">';
                                 if (resultArr[i][0]['quest_status'] != 1 || (resultArr[i][0]['order_user_id'] == user_id && user_id)) {
@@ -179,8 +185,12 @@
                                 }
                                 html += '</div></div>';
                                 html += '<div class="ld-task-time timer">倒计时：';
-                                html += '<span class="leave' + resultArr[i][0]['quest_id'] + '" id="leave' + resultArr[i][0]['quest_id'] + '" remind="' + resultArr[i][0]['dateline'] + '">计时中</span>';
-                                html += "<script type='text/javascript' >showTime('" + resultArr[i][0]['quest_id'] + "');<\/script>";
+                                if (resultArr[i][0]['quest_status'] == 4) {
+                                    html += '--:--:--';//已完成
+                                } else {
+                                    html += '<span class="leave' + resultArr[i][0]['quest_id'] + '" id="leave' + resultArr[i][0]['quest_id'] + '" remind="' + resultArr[i][0]['dateline'] + '">计时中</span>';
+                                    html += "<script type='text/javascript' >showTime('" + resultArr[i][0]['quest_id'] + "');<\/script>";
+                                }
                                 html += '</div>';
                                 html += '<a class="ld-task-info" href="' + resultArr[i][0]['projectDetail'] + '" title="' + resultArr[i][0]['quest_title'] + '"><b>' + resultArr[i][0]['quest_title'] + '</b><br />' + resultArr[i][0]['quest_intro'] + ' </a><ul class="ld-task-imgs">';
                                 for (var j = 0; j < resultArr[i][0]['userPublishedimg'].length; j++) {

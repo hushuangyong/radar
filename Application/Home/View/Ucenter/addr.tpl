@@ -4,7 +4,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="keywords" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="format-detection" content="telephone=no" />
         <title>校园雷达-用户收货地址</title>
         <meta name="renderer" content="webkit">
         <meta http-equiv="Cache-Control" content="no-siteapp"/>
@@ -60,7 +61,7 @@
                             </div>
                         </li>
                         <li>
-                            <span class="ld-task-from-l">设为默认地址</span>
+                            <span class="ld-task-from-l">设为默认</span>
                             <div class="ld-task-from-r">
                                 <input type="radio" name="isdefault" id="radio1" value="1" <eq name="dataArr['isdefault']" value="1">checked = 'checked'</eq> /><label for="radio1">是</label>
                                 <input type="radio" name="isdefault" id="radio2" value="0" <eq name="dataArr['isdefault']" value="0">checked = 'checked'</eq> /><label for="radio2">否</label>

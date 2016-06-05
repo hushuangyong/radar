@@ -4290,7 +4290,7 @@
     
                 if ( file.size > max ) {
                     file.setStatus( WUFile.Status.INVALID, 'exceed_size' );
-                    this.trigger( 'error', '单个文件超过大小限制（2MB）！', max, file );
+                    this.trigger( 'error', '单个文件超过大小限制（10MB）！', max, file );
                     return false;
                 }
     

@@ -59,6 +59,7 @@
     color: #cccccc;
     position: relative;
     float: left;
+    display: none;
 }
 
 #uploader .placeholder .webuploader-pick {
@@ -296,6 +297,7 @@
     line-height: 63px;
     vertical-align: middle;
     position: relative;
+    display: none;
 }
 
 #uploader .statusBar .progress {

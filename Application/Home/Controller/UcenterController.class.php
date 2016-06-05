@@ -344,7 +344,15 @@ class UcenterController extends Controller {
                 if ($title && $range && $rclass && $userAddress && $content && $award && $checkval) {
                     //验证处理参数
                     $title = trim($title);
+                    if (mb_strlen($title) > 15) {
+                        $this->ajaxreturn(array('code' => '4001', 'msg' => '标题不超过15个字符！您已经输入了' . mb_strlen($title) . '个字符。'));
+                        exit();
+                    }
                     $content = trim($content);
+                    if (mb_strlen($content) > 140) {
+                        $this->ajaxreturn(array('code' => '4002', 'msg' => '任务描述不超过140个字符！您已经输入了' . mb_strlen($award) . '个字符。'));
+                        exit();
+                    }
                     if (1 == $checkval) {
                         $award = floatval($award); // 价格
                     } elseif (2 == $checkval) {
@@ -806,7 +814,7 @@ class UcenterController extends Controller {
                 $userGeted['user_id'] = UcenterService::isCollection($this->user_id, $userGeted['quest_id']); #是否收藏             
                 $userGeted['userPublishedimg'] = UcenterService::getUserPublishedDetailImg($userGeted['quest_id'], 4); #项目图片
                 //获取用户与信息
-                $user_info = $this->getUserInfo($userGeted['public_user_id']);
+                $user_info = $this->getUserInfo($this->user_id);
                 trace($user_info);
                 trace($userGeted);
                 $this->assign('user_info', $user_info);

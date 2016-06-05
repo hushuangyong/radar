@@ -2,7 +2,7 @@
 </head>
 <body>
 
-    <div class="ld-task">
+    <div class="ld-task ld-task-my">
         <div class="ld-task-item">
             <div class="ld-task-l">
                 <dl>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <p class="ld-task-info-m">{$userGeted.quest_intro}</p>
-                <p class="ld-task-addr">交货地址：{$userGeted.quest_address}</p>
+                <p class="ld-task-addr">交货地址：{$userGeted.quest_address}<if condition="$user_info['id'] && ($userGeted['public_user_id'] eq $user_info['id']) "><br />接单人：{$userGeted['order_username']|phone_number_mask}<br />手机号：{$userGeted['order_username']}</if></p>
                 <ul class="ld-task-imgs">
                     <foreach name="userGeted['userPublishedimg']" item="userImg" key="kImg" >
                         <li><a href="{$userGeted.detail_url}"><img src="__UPLOAD__/{$userImg['pic']}"/></a></li>

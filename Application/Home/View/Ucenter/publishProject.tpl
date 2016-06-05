@@ -4,7 +4,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="keywords" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="format-detection" content="telephone=no" />
         <title>校园雷达-发布项目</title>
         <meta name="renderer" content="webkit">
         <meta http-equiv="Cache-Control" content="no-siteapp"/>
@@ -28,7 +29,7 @@
                         <li>
                             <span class="ld-task-from-l">标      题</span>
                             <div class="ld-task-from-r">
-                                <input class="ld-input" type="text" id="title" value="{$userPublished.quest_title}" />
+                                <input class="ld-input" type="text" id="title" value="{$userPublished.quest_title}" maxlength="15" placeholder="请输入标题（不超过15字）" />
                             </div>
                         </li>
                         <li>
@@ -72,9 +73,26 @@
                                 </if>
                             </div>
                         </li>
+                        <li>
+                        	<span class="ld-task-from-l">奖励类型</span>
+                        	<div class="ld-task-from-r">
+                                <label> <input type="radio" name="docInlineRadio" id="type_prize" value="1" <eq name="userPublished['quest_reward_type']" value="1">checked="checked"</eq> /> 现金奖励</label>
+                                <label><input type="radio" name="docInlineRadio" id="type_other" value="2" <eq name="userPublished['quest_reward_type']" value="2">checked="checked"</eq> /> 其他奖励</label>
+                            </div>
+                            <!--<span class="ld-task-from-l"><input type="radio" name="docInlineRadio" id="type_prize" value="1" <eq name="userPublished['quest_reward_type']" value="1">checked="checked"</eq> /><label for="">现金奖励</label></span>
+                            <span class="ld-task-from-l"><input type="radio" name="docInlineRadio" id="type_other" value="2" <eq name="userPublished['quest_reward_type']" value="2">checked="checked"</eq> /><label for="">其他奖励</label></span>-->
+                        </li>
+                        <li class="am-hide">
+                        	<div class="ld-task-from-r">
+                                <input class="ld-input" type="number" id="prize" placeholder="请输入金额" onkeyup="value=value.replace(/^0*(\d*).*$/,'$1')" value="{$userPublished.quest_reward}" />
+                            </div>
+                        </li>
+                        <li class="am-hide">
+                            <div class="ld-task-from-r"><input class="ld-input" type="text" id="other" placeholder="请输入奖励"  value="{$userPublished.quest_reward}" /></div>
+                        </li>
                     </ul>
                     <ul>
-                        <li><textarea class="ld-textarea" name="" id="doc-ta-1" rows="4" cols="30" placeholder="描述下你的任务">{$userPublished.quest_intro}</textarea></li>
+                        <li><textarea class="ld-textarea" name="" id="doc-ta-1" rows="4" cols="30" maxlength="140" placeholder="描述下你的任务（140字以内）">{$userPublished.quest_intro}</textarea></li>
                         <li>
                             <div id="uploader" class="wu-example">
                                 <div class="queueList">
@@ -112,18 +130,7 @@
 
                         </li>
                     </ul>
-                    <ul>
-                        <li>
-                            <span class="ld-task-from-l"><input type="radio" name="docInlineRadio" id="type_prize" value="1" <eq name="userPublished['quest_reward_type']" value="1">checked="checked"</eq> /><label for="">全  部</label></span>
-                            <div class="ld-task-from-r">
-                                <input class="ld-input-shurt" type="number" id="prize" value="{$userPublished.quest_reward}" />元
-                            </div>
-                        </li>
-                        <li>
-                            <span class="ld-task-from-l"><input type="radio" name="docInlineRadio" id="type_other" value="2" <eq name="userPublished['quest_reward_type']" value="2">checked="checked"</eq> /><label for="">其他奖励</label></span>
-                            <div class="ld-task-from-r"><input class="ld-input-shurt" type="text" id="other" value="{$userPublished.quest_reward}" /></div>
-                        </li>
-                    </ul>
+                   
                 </form>
             </div>
         </div>
@@ -139,13 +146,13 @@
             $(document).ready(function () {
                 //奖励内容切换
                 $('#type_prize').click(function () {
-                    $('#prize').show();
-                    $('#other').hide();
+                    $('#prize').parents("li").removeClass("am-hide");
+                    $('#other').parents("li").addClass("am-hide");
                 });
 
                 $('#type_other').click(function () {
-                    $('#other').show();
-                    $('#prize').hide();
+                    $('#other').parents("li").removeClass("am-hide");
+                    $('#prize').parents("li").addClass("am-hide");
                 });
 
                 //删除操作

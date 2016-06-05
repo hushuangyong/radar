@@ -13,8 +13,8 @@ class ProjectService extends Model {
         $whereStr = " p1.`end_time` > '" . time() . "'  ";
         if ($class_id > 0) {
             $result = $data->alias('p1')
-                    ->field('p1.`quest_id`,public_user_id,quest_title,quest_range,`end_time`,quest_class,address_id,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time,p3.`user_id`,school.`id` AS s_id,school.`name` AS s_name,user.`username` AS public_username')
-                    //->join('left join radar_quest_img p2 on p1.quest_id=p2.quest_id')
+                    ->field('p1.`quest_id`,public_user_id,quest_title,quest_range,`end_time`,quest_class,address_id,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time,p3.`user_id`,school.`id` AS s_id,school.`name` AS s_name,user.`username` AS public_username , orderuser.`username` AS order_username ')
+                    ->join('left join `radar_user` orderuser on p1.`order_user_id` = orderuser.`id` ')
                     ->join('left join `radar_school` school on p1.`quest_range` = school.`id` ')
                     ->join('left join `radar_user` user on p1.`public_user_id` = user.`id` ')
                     ->join("left join `radar_collection` p3 on (p1.`quest_id` = p3.`quest_id` AND p3.`user_id` = '" . session('user_id') . "')")
@@ -28,8 +28,8 @@ class ProjectService extends Model {
                 $where = ' WHERE' . $whereStr . '';
             }
             $result = $data->alias('p1')
-                    ->field('p1.`quest_id`,public_user_id,quest_title,quest_range,`end_time`,quest_class,address_id,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time,p3.`user_id`,school.`id` AS s_id,school.`name` AS s_name,user.`username` AS public_username')
-                    //->join('left join `radar_quest_img` p2 on p1.`quest_id` = p2.`quest_id` ')
+                    ->field('p1.`quest_id`,public_user_id,quest_title,quest_range,`end_time`,quest_class,address_id,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time,p3.`user_id`,school.`id` AS s_id,school.`name` AS s_name,user.`username` AS public_username, orderuser.`username` AS order_username   ')
+                    ->join('left join `radar_user` orderuser on p1.`order_user_id` = orderuser.`id` ')
                     ->join('left join `radar_school` school on p1.`quest_range` = school.`id` ')
                     ->join('left join `radar_user` user on p1.`public_user_id` = user.`id` ')
                     ->join("left join `radar_collection` p3 on p1.`quest_id` = p3.`quest_id` AND p3.`user_id` = '" . session('user_id') . "' {$where}")
@@ -56,6 +56,7 @@ class ProjectService extends Model {
             $array[$result[$i]['quest_id']][0]['userPublishedimg'] = UcenterService::getUserPublishedDetailImg($result[$i]['quest_id'], 4); #项目图片
             $array[$result[$i]['quest_id']][0]['sgkeyUrl'] = U('Index/radar', array('sgkey' => dtd_encrypt($result[$i]['public_user_id']))); # 该用户发布的项目
             $array[$result[$i]['quest_id']][0]['status_name'] = get_quest_status($result[$i]['quest_status']); #项目状态名
+            $array[$result[$i]['quest_id']][0]['order_username'] = trim($result[$i]['order_username']); #接单人的用户名
         }
 
         //$array = array_unique($array);
@@ -72,12 +73,13 @@ class ProjectService extends Model {
         if ($user_id) {
             //单个项目详情
             $result = $data->alias('p1')
-                ->field('p1.quest_id,public_user_id,quest_title,quest_range,`end_time`,quest_class,p3.`address_info` AS quest_address,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time,p3.`province`,p3.`city`,p3.`distin`,p2.user_id ,user.`username` AS public_username')
+                ->field('p1.quest_id,public_user_id,quest_title,quest_range,`end_time`,quest_class,p3.`address_info` AS quest_address,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time,p3.`province`,p3.`city`,p3.`distin`,p2.user_id ,user.`username` AS public_username , orderuser.`username` AS order_username ')
                 ->join('left join radar_collection as p2 on p2.quest_id=p1.quest_id')->join('left join `radar_user` user on p1.`public_user_id` = user.`id` ')->join('left join `radar_address` p3 on p1.`address_id` = p3.`address_id` ')
+                ->join('left join `radar_user` orderuser on p1.`order_user_id` = orderuser.`id` ')
                 ->where("p1.`quest_id` = '%d'", array($quest_id))
                 ->find();
         } else {
-            $result = $data->field('quest_id,public_user_id,quest_title,quest_range,`end_time`,quest_class,p3.`address_info` AS quest_address,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time ,p3.`province` ,p3.`city` ,p3.`distin` ,user.`username` AS public_username')->alias('p1')->join('left join `radar_user` user on p1.`public_user_id` = user.`id` ')->join('left join `radar_address` p3 on p1.`address_id` = p3.`address_id` ')->where("`quest_id` = '%d'", array($quest_id))->find();
+            $result = $data->field('quest_id,public_user_id,quest_title,quest_range,`end_time`,quest_class,p3.`address_info` AS quest_address,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time ,p3.`province` ,p3.`city` ,p3.`distin` ,user.`username` AS public_username , orderuser.`username` AS order_username ')->alias('p1')->join('left join `radar_user` user on p1.`public_user_id` = user.`id` ')->join('left join `radar_user` orderuser on p1.`order_user_id` = orderuser.`id` ')->join('left join `radar_address` p3 on p1.`address_id` = p3.`address_id` ')->where("`quest_id` = '%d'", array($quest_id))->find();
         }
 
         if (!empty($result) && is_array($result)) {

@@ -249,11 +249,11 @@ class UcenterService extends Model {
      */
     public static function getUserGetedDetail($quest_id, $user_id) {
         $data = M('Quest', 'radar_', 'DB_DTD');
-        $result = $data->field('quest_id,public_user_id,quest_title,quest_range,`end_time` ,quest_class,p3.`address_info` AS quest_address,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time, p3.`province`, p3.`city`, p3.`distin` , users.`username` AS public_username')->alias('p1')->join('left join `radar_user` users on p1.`public_user_id` = users.`id` ')->join('left join `radar_address` p3 on p1.`address_id` = p3.`address_id` ')->where("`order_user_id` = '%d' and `quest_id` = '%d'", array($user_id, $quest_id))->find();
+        $result = $data->field('quest_id,public_user_id,quest_title,quest_range,`end_time` ,quest_class,p3.`address_info` AS quest_address,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time, p3.`name` AS `receive_name` ,p3.`telephone` ,p3.`province`, p3.`city`, p3.`distin` , users.`username` AS public_username')->alias('p1')->join('left join `radar_user` users on p1.`public_user_id` = users.`id` ')->join('left join `radar_address` p3 on p1.`address_id` = p3.`address_id` ')->where("`order_user_id` = '%d' and `quest_id` = '%d'", array($user_id, $quest_id))->find();
 
         if (!empty($result) && is_array($result)) {
             $result['dateline'] = ($result['end_time'] > time()) ? $result['end_time'] - time() : '0'; #剩余时间
-            $result['quest_address'] = $result['province'] . $result['city'] . $result['distin'] . $result['quest_address']; #省区市-地址
+            $result['quest_address'] = $result['province'] . '省(直辖市)' . $result['city'] . $result['distin'] . $result['quest_address']; #省区市-地址
         }
         return $result;
     }

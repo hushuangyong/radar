@@ -6,7 +6,7 @@
         <img src="__STATIC__/assets/img/temp/img-banner.jpg"/>
     </div>
 
-    <div class="ld-task">
+    <div class="ld-task ld-task-my">
         <div class="ld-task-item">
             <div class="ld-task-l">
                 <dl>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <p class="ld-task-info-m">{$userGeted.quest_intro} </p>
-                <p class="ld-task-addr">交货地址：{$userGeted.quest_address}</p>
+                <p class="ld-task-addr"><if condition="$user_info['id'] && ($user_info['id'] eq $userGeted['order_user_id']  )">收货人：{$userGeted['receive_name']}<br />手机号：{$userGeted['telephone']}<br /></if>交货地址：{$userGeted.quest_address}</p>
                 <ul class="ld-task-imgs">
                     <foreach name="userGeted['userPublishedimg']" item="userImg" key="kImg" >
                         <li><a href="{$userGeted.detail_url}"><img src="__UPLOAD__/{$userImg['pic']}"/></a></li>

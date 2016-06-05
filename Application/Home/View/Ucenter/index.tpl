@@ -2,7 +2,7 @@
 </head>
 <body>
 
-    <div class="ld-task">
+    <div class="ld-task ld-task-my">
         <div class="ld-task-item">
             <div class="ld-task-l">
                 <dl>
@@ -16,7 +16,7 @@
                     </h4>
                 </div>
             </div>
-            <div class="ld-user-details">
+            <div class="ld-user-details am-hide">
                 <ul>
                     <li>积分：{$user_info['point']}</li>
                     <li class="ld-user-details-line"></li>

@@ -27,6 +27,12 @@ var showMenu = function() {
 showMenu();
 
 $(function () {
+	
+	//返回顶部
+	$("#ld-go-top>a").click(function(){
+		$("body,html").animate({ scrollTop : 0 }, 800 );
+	});
+	
     //选择抢单
     $(document).on('click', '.ld-home-task-a', function () {
         var reward = "";

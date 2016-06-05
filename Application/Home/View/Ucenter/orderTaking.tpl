@@ -14,15 +14,15 @@
         <notempty name='userGeted'>
             <foreach name='userGeted' item='list'>
                 <div class="ld-task">
-                    <div class="ld-task-item">
+                    <div class="ld-task-item ld-task-item-fix">
                         <div class="ld-task-l">
                             <dl>
                                 <dt class="ld-user-avatars"><a href="{$list.sgkeyUrl}"><img src="__STATIC__/assets/img/temp/img-user.jpg"/></a></dt>
-                            </dl>
-                            <div class="ld-task-l-btn">
-                                奖 励
+                                <dd class="ld-task-l-btn">
+                                	奖 励
                                 <strong>{$list['quest_reward']}</strong>
-                            </div>
+                                </dd>
+                            </dl>
                         </div>
                         <div class="ld-task-r" query_url="{$list['projectDetail']}">
                             <div class="ld-task-title">
@@ -33,21 +33,25 @@
                                             );</script>
                                     </span>
                                 </h4>
-                                <div class="ld-task-btn" style="display:none;">
-                                    <input type="checkbox" id="checkbox_c{$list.quest_id}" class="ld-check"><label for="checkbox_c{$list.quest_id}"></label>
+                                <div class="ld-task-btn">
+                                	<if condition="$list[0]['quest_status'] neq 1 OR ($list[0]['order_user_id'] == $user_id && $user_id)">
+	                                    <a href="javascript:void(0);" name="" id="disItem_{$list[0]['quest_id']}" class="can_not_order" disabled="disabled" >已被抢</a>
+	                                    <else />
+	                                    <a href="javascript:void(0);" id="checkbox_c{$list[0]['quest_id']}" class="ld-home-task-a" quest_id="{$list[0]['quest_id']}" quest_reward="{$list[0]['quest_reward']}">抢单</a>
+	                                </if>
                                 </div>
                             </div>
                             <p class="ld-task-t"  onclick="goProjectDetail('{$list.projectDetail}');">{$list.quest_title}</p>
-                            <p class="ld-task-info-m"  onclick="goProjectDetail('{$list.projectDetail}');">{$list.quest_intro} </p>
+                            <!--<p class="ld-task-info-m"  onclick="goProjectDetail('{$list.projectDetail}');">{$list.quest_intro} </p>
                             <ul class="ld-task-imgs">
                                 <foreach name="list['userPublishedimg']" item="userImg" key="kImg" >
                                     <li><a href="{:U('Ucenter/myOrderDetail')}?pubid={$list.quest_id}"><img src="__UPLOAD__/{$userImg['pic']}"/></a></li>
                                 </foreach>
 
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
-                    <div class="ld-my-task-bot">
+                    <!--<div class="ld-my-task-bot">
                         <if condition="$list['public_user_id'] eq $list['follow']['h_user_id']">
                             <a href="javascript:;" class="ld-like delete_follow" title="已关注" qid="{$list['quest_id']}" id="{$list['follow']['id']}"><i class="i-ld i-like-on"></i>已关注楼主</a>
                             <else />
@@ -60,7 +64,7 @@
                         </if>
 
                         <span>状态：{$list.status_name}</span>
-                    </div>
+                    </div>-->
                     <span class="{$list['className']}"></span>
                 </div>
             </foreach>

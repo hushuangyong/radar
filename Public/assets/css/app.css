@@ -399,10 +399,15 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .ld-comm-btn a { display: inline-block; border-radius: 1.5rem; width: 100%; height: 3rem; font-size: 2rem; line-height: 3rem; color: #fff; background: #4d56a3; }
 .ld-comm-btn a.ld-dis { background: #d9d9d9; border: 1px solid #ccc; }
 
-.ld-left-side { position: fixed; left: 0; top: 5rem; }
+.ld-left-side { position: fixed; left: 0; bottom: 5rem; }
 .ld-left-side ul li { width: 5rem; height: 5rem; text-align: center; padding-top: 6px; background-color: rgba(77,86,163,0.7); margin-bottom: 10px; border-radius: 0 0.5rem 0.5rem 0; }
 .ld-left-side ul li img { width: 2.5rem; }
 .ld-left-side ul li span { display: block; color: #fff; font-size: 1.4rem; }
+
+.ld-left-side-top { position: fixed; left: 0; bottom: 2rem; }
+.ld-left-side-top ul li { width: 5rem; height: 5rem; text-align: center; padding-top: 6px; background-color: rgba(77,86,163,0.7); margin-bottom: 10px; border-radius: 0 0.5rem 0.5rem 0; }
+.ld-left-side-top ul li img { width: 2.5rem; }
+.ld-left-side-top ul li span { display: block; color: #fff; font-size: 1.4rem; }
 
 .ld-task-banner { width: 100%; }
 .ld-task-banner img { width: 100%; max-width: 100%; } 
@@ -431,6 +436,8 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .ld-user-school a { color: #666; }
 .ld-user-time { color: #f76257; font-size: 1rem; margin-top: 0.5rem; }
 
+.ld-task-item-fix { padding-right: 20px; background: url(../img/icn-task-right.png) right center no-repeat; }
+
 .ld-task-r { float: right; width: 78%; padding-left: 2%; margin-bottom: 10px; }
 .ld-task-title { height: 5.0rem; margin-bottom: 0.5rem; overflow: hidden; }
 .ld-task-title h4 { float: left; width: 70%; font-size: 1.8rem; font-weight: normal; margin-bottom: 1rem; }
@@ -449,7 +456,7 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .ld-list { height: 100%; background: #f2f2f2; padding-top: 10px; }
 .ld-list ul { background: #fff; margin: 0 0 10px; border-top: 1px solid #eee; }
 .ld-list li { line-height: 2.5rem; padding: 10px; border-bottom: 1px solid #eee; }
-.ld-list li a { font-size: 1.6rem; color: #666; }
+.ld-list li a { display: block; font-size: 1.6rem; color: #666; }
 .ld-list li .ld-list-l { float: left; width: 2.5rem; height: 2.5rem; margin-right: 1rem; }
 .ld-list li .ld-list-r { float: right; width: 2.5rem; height: 2.5rem; } 
 
@@ -469,6 +476,9 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .ld-task-time em { font-style: normal; }
 .ld-task-time-end { font-size: 1.2rem; color: #666; }
 .ld-task-time-end em { font-style: normal; }
+
+.ld-task-my 	{ margin-bottom: 0; }
+.ld-task-my .ld-task-item { border-bottom: 0; }
 
 .ld-task-btn { float: right; width: 20%; }
 .ld-task-btn span { display: block; width: 100%; height: 1.2rem; font-size: 1.2rem; line-height: 1.2rem; margin-top: 0.3rem; color: #999; overflow: hidden; }
@@ -494,23 +504,23 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 
 .ld-task-info-m { font-size: 1.5rem; margin: 0; padding: 0; }
 .ld-task-addr { font-size: 1.5rem; margin: 1rem 0; padding: 0; }
-.ld-task-t { font-size: 2rem; margin: 0 0 5px 0; padding: 0; }
+.ld-task-t { font-size: 1.5rem; margin: 0 0 5px 0; padding: 0; }
 .ld-task-blank5 { background: #f2f2f2; height: 8px; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
 
-.ld-task-buff { padding: 3rem 0; }
+.ld-task-buff { padding: 2rem 0 3rem; }
 .ld-task-buff ul { height: 5px; background: #c6c2bd; position: relative; margin-left: 4rem; }
 .ld-task-buff li { float: left; width: 25%; margin-top: -0.8rem; text-align: center; font-size: 1.5rem; }
 .ld-task-buff li:nth-last-child(1) { background: #fff; }
 .ld-task-buff li span { display: block; border: 2px solid #b3afaa; width: 2rem; height: 2rem; text-align: center; color: #fff; line-height: 1.8rem; background: #c6c2bd; border-radius: 50%; }
-.ld-task-buff li strong { color: #666; font-weight: normal; margin-top: .5rem; margin-left: -4.5rem; display: block; }
-.ld-task-buff li.current span { background: #f4f4f4; color: #333; border: 2px solid #c6c2bd; } 
+.ld-task-buff li strong { color: #666; font-weight: normal; margin-top: .5rem; margin-left: -5.5rem; display: block; }
+.ld-task-buff li.current span { background: #f4f4f4; color: #f34e5e; border: 2px solid #f34e5e; } 
 .ld-task-buff ul.ld-task-buff-fix { height: 5px; background: #c6c2bd; position: relative; margin-left: 8rem; }
 .ld-task-buff ul.ld-task-buff-fix li { float: left; width: 33.33%; margin-top: -0.8rem; text-align: center; font-size: 1.5rem; }
 .ld-task-buff ul.ld-task-buff-fix li:nth-last-child(1) { background: #fff; }
 .ld-task-buff ul.ld-task-buff-fix li span { display: block; border: 2px solid #b3afaa; width: 2rem; height: 2rem; text-align: center; color: #fff; line-height: 1.8rem; background: #c6c2bd; border-radius: 50%; }
 .ld-task-buff ul.ld-task-buff-fix li strong { color: #666; font-weight: normal; margin-top: .5rem; margin-left: -7.5rem; display: block; }
-.ld-task-buff ul.ld-task-buff-fix li.current span { background: #f4f4f4; color: #333; border: 2px solid #c6c2bd; } 
-.ld-task-sub { clear: both; text-align: center; margin: 0 3rem; padding-top: 1rem; }
+.ld-task-buff ul.ld-task-buff-fix li.current span { background: #f4f4f4; color: #f34e5e; border: 2px solid #f34e5e; } 
+.ld-task-sub { clear: both; text-align: center; margin: 0 3rem; padding-top: 1.5rem; }
 .ld-task-sub a { display: inline-block; border-radius: 2rem; width: 100%; height: 4rem; font-size: 2rem; line-height: 4rem; color: #fff; background: #4d56a3; }
 .ld-task-sub a.ld-btn-push { color: #4d56a3; background: #fff; border: 1px solid #4d56a3; }
 .ld-task-sub a.cannot { background: #fff; color: #999; border: 1px solid #666; margin: 0 0 10px 0; width: 50%;}
