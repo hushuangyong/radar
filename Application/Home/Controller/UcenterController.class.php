@@ -911,7 +911,7 @@ class UcenterController extends Controller {
                 $this->assign('userPublishedimg', $userPublishedimg);
                 $this->assign('quest_id', $quest_id);
             } else {
-                $userPublished['end_time'] = time() + 60 * 60 * 24 * 7; #默认7天后
+                $userPublished['end_time'] = time() + 60 * 60 * 24 * 1; #默认1天后
             }
 
             trace($userAddressArr);
