@@ -495,7 +495,7 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .ld-home-footer { background: #f7f7f7; padding: 0; position: fixed; bottom: 0; left: 0; z-index: 99; width: 100%; }
 .ld-home-footer .ld-home-task-s { float: left; font-size: 1.8rem; line-height: 2.5rem; color: #333; }
 .ld-home-footer .ld-home-task-s strong { color: #f34e5e; font-weight: normal; }
-.ld-home-footer .ld-home-task-b, .ld-home-task-a {float: right; width: 8rem; text-align: center; height: 2.5rem; line-height: 2.5rem; font-size: 1.8rem; color: #fff; background: #4d56a3; border-radius: 1.25rem; }
+.ld-home-footer .ld-home-task-b, .ld-home-task-a {float: right; width: 75px; text-align: center; height: 24px; line-height: 24px; font-size: 1.8rem; color: #fff; background: #4d56a3; border-radius: 12px; }
 .ld-home-task-a:hover{ color: #f60}
 
 .ld-login-box { background: url(../img/login/login_bg.jpg) no-repeat; background-size: cover; margin-top: 0; padding-top: 2rem; padding-bottom: 2rem; }
