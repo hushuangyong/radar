@@ -24,12 +24,15 @@ class ImageController extends Controller {
 
     private $rootPath = '';
     public $img_ini = array(
-        array('width' => '200', 'height' => '150'), //默认缩略图片的配置
+        array('width' => '200', 'height' => '300'), //默认缩略图片的配置
         array('width' => '100', 'height' => '100'), //默认缩略图片的配置		
     );
     private $user_id;
 
     public function _initialize() {
+        if (!empty(cookie('radar_userid'))) {
+            session('user_id', cookie('user_id'));
+        }
         $this->user_id = session('user_id');
     }
 

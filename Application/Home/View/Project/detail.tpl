@@ -246,7 +246,7 @@
                     if (200 == msg.code) {
                         var html = "";
                         $.each(msg.data, function (i, item) {
-                            html += '<div class="ld-task-item"><div class="ld-task-l"><dl><dt class="ld-user-avatars"><a href="' + item.sgkeyUrl + '"><img src="__STATIC__/assets/img/temp/img-user.jpg"/></a></dt></dl></div><div class="ld-task-r"><div class="ld-task-title"><h4><a class="ld-task-h4" href="">' + item.user_id + '/' + item.user_name + '</a></h4></div><p class="ld-task-info-m">' + item.content + ' </p></div></div>';
+                            html += '<div class="ld-task-item"><div class="ld-task-l"><dl><dt class="ld-user-avatars"><a href="' + item.sgkeyUrl + '"><img src="__STATIC__/assets/img/temp/img-user.jpg"/></a></dt></dl></div><div class="ld-task-r"><div class="ld-task-title"><h4><a class="ld-task-h4" href="">' +  '' + item.user_name + '</a></h4></div><p class="ld-task-info-m">' + item.content + ' </p></div></div>';
                         });
                     } else {
                         //alert(msg.msg);
