@@ -472,7 +472,7 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 
 .ld-task  	{ position: relative; margin-bottom: 5rem; }
 .ld-task .ld-task-end { position: absolute; z-index: 2; left: 3rem; top: 2rem; width: 8rem; height: 8rem; background: url(../img/icon/icn-end.png) 0 0 no-repeat; background-size: cover; } 
-.ld-task-time { font-size: 1.2rem; color: #f34e5e; }
+.ld-task-time { margin-top: -6px; font-size: 1.2rem; color: #f34e5e; }
 .ld-task-time em { font-style: normal; }
 .ld-task-time-end { font-size: 1.2rem; color: #666; }
 .ld-task-time-end em { font-style: normal; }
