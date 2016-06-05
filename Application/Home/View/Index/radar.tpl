@@ -98,13 +98,13 @@
                 </div>
             </foreach>
         </empty>
-		 <div class="ld-left-side">
-	        <ul>
-	            <li id="ld-go-top"><a href="javascript:;"><img src="__STATIC__/assets/img/icon/icn-top.png"/> <span>顶部</span></a></li>
-	            <li><a href="{$pageUrl['publish']}"><img src="__STATIC__/assets/img/icon/icn-fb.png"/> <span>发布</span></a></li>
-            	<li><a href="{$pageUrl['myGetted']}"><img src="__STATIC__/assets/img/icon/icn-wd.png"/> <span>我的</span></a></li>
-	        </ul>
-	    </div>
+        <div class="ld-left-side">
+            <ul>
+                <li id="ld-go-top"><a href="javascript:;"><img src="__STATIC__/assets/img/icon/icn-top.png"/> <span>顶部</span></a></li>
+                <li><a href="{$publish}"><img src="__STATIC__/assets/img/icon/icn-fb.png"/> <span>发布</span></a></li>
+                <li><a href="{$myCenter}"><img src="__STATIC__/assets/img/icon/icn-wd.png"/> <span>我的</span></a></li>
+            </ul>
+        </div>
     </div>
     <div class="operation" style="position: relative;text-align: center;bottom: 3.4em; height: 30px; line-height: 30px; background: #f3f5f9;">
         <a href="javascript:void(0);" class="load_more" style="display: block;" title="点击加载">加载更多</a>
