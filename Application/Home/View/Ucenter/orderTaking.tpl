@@ -33,16 +33,10 @@
                                             );</script></eq>
                                     </span>
                                 </h4>
-                                <div class="ld-task-btn">
-                                    <if condition="$list[0]['quest_status'] neq 1 OR ($list[0]['order_user_id'] == $user_id && $user_id)">
-                                        <a href="javascript:void(0);" name="" id="disItem_{$list[0]['quest_id']}" class="can_not_order" disabled="disabled" >已被抢</a>
-                                        <else />
-                                        <a href="javascript:void(0);" id="checkbox_c{$list[0]['quest_id']}" class="ld-home-task-a" quest_id="{$list[0]['quest_id']}" quest_reward="{$list[0]['quest_reward']}">抢单</a>
-                                    </if>
-                                </div>
                             </div>
-                            <p class="ld-task-t"  onclick="goProjectDetail('{$list.projectDetail}');">{$list.quest_title}</p>
                             <p class="ld-task-t"><span>状态：{$list.status_name}</span></p>
+                            <p class="ld-task-t"  onclick="goProjectDetail('{$list.projectDetail}');">{$list.quest_title}</p>
+                            
                             <!--<p class="ld-task-info-m"  onclick="goProjectDetail('{$list.projectDetail}');">{$list.quest_intro} </p>
                             <ul class="ld-task-imgs">
                                 <foreach name="list['userPublishedimg']" item="userImg" key="kImg" >
