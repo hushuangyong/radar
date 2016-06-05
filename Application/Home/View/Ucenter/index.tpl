@@ -12,7 +12,7 @@
             <div class="ld-task-r">
                 <div class="ld-user-title">
                     <h4>
-                        <a class="ld-task-h4" href="">{$user_info['id']}/{$user_info['username']}<img class="ld-user-lv" src="__STATIC__/assets/img/icn-user-lv.png"/></a>
+                        <a class="ld-task-h4" href="">{$user_info['username']}<img class="ld-user-lv" src="__STATIC__/assets/img/icn-user-lv.png"/></a>
                     </h4>
                 </div>
             </div>
