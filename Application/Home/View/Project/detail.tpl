@@ -46,14 +46,23 @@
                 <span>1</span>
                 <strong>已发布</strong>
             </li>
+            <li class="ld-task-buff-line" style="width: 12%;">
+				<div class="ld-task-buff-line"></div>
+			</li>
             <li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>>
                 <span>2</span>
                 <strong>已接单</strong>
             </li>
+            <li class="ld-task-buff-line" style="width: 12%;">
+				<div class="ld-task-buff-line"></div>
+			</li>
             <li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>>
                 <span>3</span>
                 <strong>已提交</strong>
             </li>
+            <li class="ld-task-buff-line" style="width: 12%;">
+				<div class="ld-task-buff-line"></div>
+			</li>
             <li <eq name="userGeted['quest_status']" value="4"> class="current"</eq>>
                 <span>4</span>
                 <strong>已完成</strong>
