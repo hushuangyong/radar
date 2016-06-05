@@ -36,9 +36,8 @@
 #uploader .queueList {
 }
 #uploader .queueList.filled {
-    padding: 30px 17px;
+    padding: 30px 0;
     margin: 0;
-    border: 3px dashed transparent;
 }
 #uploader .queueList.webuploader-dnd-over {
     border: 3px dashed #999999;
@@ -108,11 +107,11 @@
 }
 
 #uploader .filelist li {
-    width: 100px;
+    width: 24%;
     height: 100px;
     background: url(img/bg.png) no-repeat;
     text-align: center;
-    margin: 30px 15px 0 0;
+    margin: 0 1% 0 0;
     position: relative;
     display: inline-block;
     overflow: hidden;
