@@ -221,7 +221,7 @@ class UcenterService extends Model {
                 $result[$key]['pic_domain'] = 'http://radar-public.stor.sinaapp.com/'; //线上的新浪SAE
                 $result[$key]['nonepic'] = $result[$key]['pic_domain'] . '/none_pic/no_photo.jpg'; #没图片的占位符
             } elseif (APP_MODE == 'common') {
-                $result[$key]['pic'] = str_replace(".gif", "_100x100.gif", str_replace(".png", "_100x100.png", str_replace(".jpg", "_100x100.jpg", str_replace(".jpeg", "_100x100.jpeg", $value['pic'])))); #缩略图
+                $result[$key]['pic'] = str_replace(".gif", "_300x390.gif", str_replace(".png", "_300x390.png", str_replace(".jpg", "_300x390.jpg", str_replace(".jpeg", "_300x390.jpeg", $value['pic'])))); #缩略图
                 $result[$key]['pic_origin'] = $value['pic']; #原图
                 $result[$key]['pic_domain'] = '/Public/'; //本地开发
                 $result[$key]['nonepic'] = $result[$key]['pic_domain'] . '/Images/Radar/Main/no_photo.jpg'; #没图片的占位符
@@ -231,10 +231,14 @@ class UcenterService extends Model {
     }
 
     //通过 user_id 从 quest 表 获取个人已抢单项目
-    public static function getUserGeted($user_id, $status) {
+    public static function getUserGeted($user_id, $status, $sgkey = NULL) {
         $data = M('Quest', 'radar_', 'DB_DTD');
         $where = array();
-        $where['order_user_id'] = $user_id;
+        if (!empty($sgkey)) {
+            $where['public_user_id'] = dtd_decrypt($sgkey); #我的已发布
+        } else {
+            $where['order_user_id'] = $user_id; #我的接单
+        }
         if (!empty($status) && $status > 0) {
             $where['quest_status'] = $status;
         }

@@ -24,8 +24,8 @@ class ImageController extends Controller {
 
     private $rootPath = '';
     public $img_ini = array(
-        array('width' => '200', 'height' => '300'), //默认缩略图片的配置
-        array('width' => '100', 'height' => '100'), //默认缩略图片的配置		
+        array('width' => '600', 'height' => '780'), //默认缩略图片的配置
+        array('width' => '300', 'height' => '390'), //默认缩略图片的配置		
     );
     private $user_id;
 
@@ -165,6 +165,7 @@ class ImageController extends Controller {
         $ext = substr($source, $w);
         if (is_array($array)) {
             $obj = new \Org\Util\PicThumb($logfile);
+            $imgSize = getimagesize($source);
             foreach ($array as $val) {
                 $name = $path . '_' . $val['width'] . 'x' . $val['height'] . $ext; //缩略图名
                 mkDirs($paths);
@@ -172,9 +173,9 @@ class ImageController extends Controller {
                 // 按比例生成缩略图
                 $param = array(
                     'type' => 'fit',
-                    'width' => $val['width'],
-                    'height' => $val['height'],
-                    'quality' => '100'//生成的图片质量
+                    'width' => ($imgSize[0] > $val['width'] ) ? $val['width'] : $imgSize[0], //宽
+                    'height' => ($imgSize[1] > $val['height'] ) ? $val['height'] : $imgSize[1], //高
+                    'quality' => '80'//生成的图片质量
                 );
 
 
