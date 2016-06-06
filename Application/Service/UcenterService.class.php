@@ -221,7 +221,7 @@ class UcenterService extends Model {
                 $result[$key]['pic_domain'] = 'http://radar-public.stor.sinaapp.com/'; //线上的新浪SAE
                 $result[$key]['nonepic'] = $result[$key]['pic_domain'] . '/none_pic/no_photo.jpg'; #没图片的占位符
             } elseif (APP_MODE == 'common') {
-                $result[$key]['pic'] = str_replace(".gif", "_100x100.gif", str_replace(".png", "_100x100.png", str_replace(".jpg", "_100x100.jpg", str_replace(".jpeg", "_100x100.jpeg", $value['pic'])))); #缩略图
+                $result[$key]['pic'] = str_replace(".gif", "_300x390.gif", str_replace(".png", "_300x390.png", str_replace(".jpg", "_300x390.jpg", str_replace(".jpeg", "_300x390.jpeg", $value['pic'])))); #缩略图
                 $result[$key]['pic_origin'] = $value['pic']; #原图
                 $result[$key]['pic_domain'] = '/Public/'; //本地开发
                 $result[$key]['nonepic'] = $result[$key]['pic_domain'] . '/Images/Radar/Main/no_photo.jpg'; #没图片的占位符
