@@ -231,10 +231,14 @@ class UcenterService extends Model {
     }
 
     //通过 user_id 从 quest 表 获取个人已抢单项目
-    public static function getUserGeted($user_id, $status) {
+    public static function getUserGeted($user_id, $status, $sgkey = NULL) {
         $data = M('Quest', 'radar_', 'DB_DTD');
         $where = array();
-        $where['order_user_id'] = $user_id;
+        if (!empty($sgkey)) {
+            $where['public_user_id'] = dtd_decrypt($sgkey); #我的已发布
+        } else {
+            $where['order_user_id'] = $user_id; #我的接单
+        }
         if (!empty($status) && $status > 0) {
             $where['quest_status'] = $status;
         }

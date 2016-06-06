@@ -40,7 +40,7 @@ class UcenterController extends Controller {
         $this->assign('user_id', $this->user_id);
         $linkUrl = array(
             'publish' => U(CONTROLLER_NAME . '/publishProject'),
-            'published' => U('Index' . '/radar', array('sgkey' => dtd_encrypt($this->user_id))), #已发布
+            'published' => U(CONTROLLER_NAME . '/orderTaking', array('sgkey' => dtd_encrypt($this->user_id))), #已发布
             'myHome' => U(CONTROLLER_NAME . '/index'),
             'myGetted' => U(CONTROLLER_NAME . '/orderTaking'),
             'myFocus' => U(CONTROLLER_NAME . '/myCollectionTask'),
@@ -763,9 +763,10 @@ class UcenterController extends Controller {
      */
     public function orderTaking() {
         if ($this->user_id) {
+            $sgkey = I('get.sgkey', '', 'intval'); #地址栏的用户id-已发布
             $status = I('get.status', '2', 'intval,int'); //项目的状态
             //获取个人已获得项目列表
-            $userGeted = UcenterService::getUserGeted($this->user_id, $status);
+            $userGeted = UcenterService::getUserGeted($this->user_id, $status, $sgkey);
             if (is_array($userGeted) && !empty($userGeted)) {
                 foreach ($userGeted as $key => $value) {
                     if (1 == $value['quest_reward_type']) {
@@ -773,7 +774,7 @@ class UcenterController extends Controller {
                     } else if (2 == $value['quest_reward_type']) {
                         $userGeted[$key]['quest_reward'] = $value['quest_reward']; #其他奖励
                     }
-                    $userGeted[$key]['projectDetail'] = U('Ucenter/myOrderDetail', array('pubid' => $value['quest_id'],)); // 任务详细页
+                    $userGeted[$key]['projectDetail'] = $sgkey ? U('Project/detail', array('pubid' => $value['quest_id'],)) : U('Ucenter/myOrderDetail', array('pubid' => $value['quest_id'],)); // 任务详细页
                     $userGeted[$key]['sgkeyUrl'] = U('Index/radar', array('sgkey' => dtd_encrypt($value['public_user_id']))); # 该用户发布的项目
                     $userGeted[$key]['public_username'] = phone_number_mask($value['public_username']); #处理手机号
                     $userGeted[$key]['status_name'] = get_quest_status($value['quest_status']); #获取状态的对应名
@@ -784,7 +785,7 @@ class UcenterController extends Controller {
                     $userGeted[$key]['userPublishedimg'] = UcenterService::getUserPublishedDetailImg($value['quest_id'], 4); #项目图片
                 }
             }
-            $statusArr = array(array('name' => '已接收', 'url' => U(CONTROLLER_NAME . '/' . ACTION_NAME, 'status=2'), 'status' => 2,), array('name' => '完成待确认', 'url' => U(CONTROLLER_NAME . '/' . ACTION_NAME, 'status=3'), 'status' => 3,), array('name' => '已结束', 'url' => U(CONTROLLER_NAME . '/' . ACTION_NAME, 'status=4'), 'status' => 4,));
+            $statusArr = array(array('name' => '已接收', 'url' => U(CONTROLLER_NAME . '/' . ACTION_NAME, 'status=2&sgkey=' . $sgkey), 'status' => 2,), array('name' => '完成待确认', 'url' => U(CONTROLLER_NAME . '/' . ACTION_NAME, 'status=3&sgkey=' . $sgkey), 'status' => 3,), array('name' => '已结束', 'url' => U(CONTROLLER_NAME . '/' . ACTION_NAME, 'status=4&sgkey=' . $sgkey), 'status' => 4,));
             trace($status, '状态码');
             trace($statusArr, '状态');
             trace($userGeted);
