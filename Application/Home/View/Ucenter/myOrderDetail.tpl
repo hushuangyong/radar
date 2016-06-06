@@ -43,27 +43,29 @@
         </div>
     </div>
     <div class="ld-task-blank5"></div>
-    <div class="ld-task-buff">
-        <ul class="ld-task-buff-fix">
-            <li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>>
-                <span>1</span>
-                <strong>已接单</strong>
-            </li>
-            <li class="ld-task-buff-line" style="width: 12%;">
+    <div class="ld-task-buff-fix">
+    	<ul>
+			<li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>>
+				<span>1</span>
+			</li>
+			<li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>>
 				<div class="ld-task-buff-line"></div>
 			</li>
-            <li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>>
-                <span>2</span>
-                <strong>完成待确认</strong>
-            </li>
-            <li class="ld-task-buff-line" style="width: 12%;">
+			<li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>>
+				<span>2</span>
+			</li>
+			<li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>>
 				<div class="ld-task-buff-line"></div>
 			</li>
-            <li <eq name="userGeted['quest_status']" value="4"> class="current"</eq>>
-                <span>3</span>
-                <strong>已完成</strong>
-            </li>
-        </ul>
+			<li <eq name="userGeted['quest_status']" value="4"> class="current"</eq>>
+				<span>3</span>
+			</li>
+		</ul>
+		<ul class="ld-task-buff-txt">
+			<li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>><strong>已接单</strong></li>
+			<li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>><strong>完成待确认</strong></li>
+			<li <eq name="userGeted['quest_status']" value="4"> class="current"</eq>><strong>已完成</strong></li>
+		</ul>
         <div class="ld-task-sub">
             <eq name="userGeted.quest_status" value="2"><a class="ld-btn-push confirm_done_quest" href="javascript:void(0);" class="confirm_done_quest" qid="{$userGeted['quest_id']}" title="提交任务">提交任务</a></eq>
             <eq name="userGeted.quest_status" value="3"><a href="javascript:void(0);" class="cannot" title="该任务已提交">该任务已提交</a></eq>

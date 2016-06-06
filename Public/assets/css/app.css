@@ -508,19 +508,30 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .ld-task-t { font-size: 1.5rem; margin: 0 0 5px 0; padding: 0; }
 .ld-task-blank5 { background: #f2f2f2; height: 8px; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
 
-.ld-task-buff { padding: 2rem 0 3rem; }
-.ld-task-buff ul { position: relative; width: 90%; margin: 0 auto; }
-.ld-task-buff li { display: inline-block; vertical-align: middle; text-align: center; font-size: 1.5rem; }
-.ld-task-buff li .ld-task-buff-line { margin-top: -15px; margin-left: -15px; width: 200%; max-width: 6rem; height: 2px; background: #57b1e6; overflow: hidden; }
-.ld-task-buff li span { display: block; border: 2px solid #b3afaa; width: 2rem; height: 2rem; text-align: center; color: #fff; line-height: 1.8rem; background: #c6c2bd; border-radius: 50%; margin: 0 auto; }
-.ld-task-buff li strong { color: #666; font-weight: normal; margin-top: .5rem; display: block; }
-.ld-task-buff li.current span { background: #fff; color: #57b1e6; border: 2px solid #57b1e6; } 
-.ld-task-buff li.current strong { color: #57b1e6; }
-.ld-task-buff ul.ld-task-buff-fix { height: 5px; background: #c6c2bd; position: relative; margin-left: 8rem; }
-.ld-task-buff ul.ld-task-buff-fix li { float: left; width: 33.33%; margin-top: -0.8rem; text-align: center; font-size: 1.5rem; }
-.ld-task-buff ul.ld-task-buff-fix li span { display: block; border: 2px solid #b3afaa; width: 2rem; height: 2rem; text-align: center; color: #fff; line-height: 1.8rem; background: #c6c2bd; border-radius: 50%; }
-.ld-task-buff ul.ld-task-buff-fix li strong { color: #666; font-weight: normal; margin-top: .5rem; display: block; }
-.ld-task-buff ul.ld-task-buff-fix li.current span { background: #fff; color: #57b1e6; border: 2px solid #57b1e6; } 
+.ld-task-buff { padding: 2rem 0; }
+.ld-task-buff ul { clear: both; width: 320px; text-align: center; margin: 0 auto; }
+.ld-task-buff ul li { float: left; }
+.ld-task-buff ul li span { float: left; font-size: 1rem; border: 2px solid #b3afaa; width: 20px; height: 20px; text-align: center; color: #fff; line-height: 16px; background: #c6c2bd; border-radius: 50%; margin: 0 auto; }
+.ld-task-buff ul li .ld-task-buff-line { width: 80px; margin-top: 10px; height: 2px; background: #b3afaa; overflow: hidden; }
+.ld-task-buff ul.ld-task-buff-txt { width: 400px; }
+.ld-task-buff ul.ld-task-buff-txt li { width: 25%; text-align: center; }
+.ld-task-buff ul li strong { text-align: center; color: #666; font-size: 1.2rem; font-weight: normal; margin-top: 3px; display: block; }
+.ld-task-buff ul li.current span { background: #fff; color: #57b1e6; border: 2px solid #57b1e6; }
+.ld-task-buff ul li.current strong { color: #57b1e6; } 
+.ld-task-buff ul li.current .ld-task-buff-line { background: #57b1e6; }
+
+.ld-task-buff-fix { padding: 2rem 0; }
+.ld-task-buff-fix ul { clear: both; width: 260px; text-align: center; margin: 0 auto; }
+.ld-task-buff-fix ul li { float: left; }
+.ld-task-buff-fix ul li span { float: left; font-size: 1rem; border: 2px solid #b3afaa; width: 20px; height: 20px; text-align: center; color: #fff; line-height: 16px; background: #c6c2bd; border-radius: 50%; margin: 0 auto; }
+.ld-task-buff-fix ul li .ld-task-buff-line { width: 100px; margin-top: 10px; height: 2px; background: #b3afaa; overflow: hidden; }
+.ld-task-buff-fix ul.ld-task-buff-txt { width: 360px; }
+.ld-task-buff-fix ul.ld-task-buff-txt li { width: 33.33%; text-align: center; }
+.ld-task-buff-fix ul li strong { text-align: center; color: #666; font-size: 1.2rem; font-weight: normal; margin-top: 3px; display: block; }
+.ld-task-buff-fix ul li.current span { background: #fff; color: #57b1e6; border: 2px solid #57b1e6; }
+.ld-task-buff-fix ul li.current strong { color: #57b1e6; } 
+.ld-task-buff-fix ul li.current .ld-task-buff-line { background: #57b1e6; }
+
 .ld-task-sub { clear: both; text-align: center; margin: 0 3rem; padding-top: 1.5rem; }
 .ld-task-sub a { display: inline-block; border-radius: 1.5rem; width: 45%; height: 3rem; font-size: 1.5rem; line-height: 3rem; color: #4d56a3; background: #fff; border: 1px solid #4d56a3; margin: 0 2.5%; }
 .ld-task-sub a.ld-btn-push { color: #4d56a3; background: #fff; border: 1px solid #4d56a3; }

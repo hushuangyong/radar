@@ -41,33 +41,36 @@
     </div>
     <div class="ld-task-blank5"></div>
     <div class="ld-task-buff">
-        <ul>
-            <li <eq name="userGeted['quest_status']" value="1"> class="current"</eq>>
-                <span>1</span>
-                <strong>已发布</strong>
-            </li>
-            <li class="ld-task-buff-line" style="width: 12%;">
+    	<ul>
+			<li <eq name="userGeted['quest_status']" value="1"> class="current"</eq>>
+				<span>1</span>
+			</li>
+			<li <eq name="userGeted['quest_status']" value="1"> class="current"</eq>>
 				<div class="ld-task-buff-line"></div>
 			</li>
-            <li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>>
-                <span>2</span>
-                <strong>已接单</strong>
-            </li>
-            <li class="ld-task-buff-line" style="width: 12%;">
+			<li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>>
+				<span>2</span>
+			</li>
+			<li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>>
 				<div class="ld-task-buff-line"></div>
 			</li>
-            <li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>>
-                <span>3</span>
-                <strong>已提交</strong>
-            </li>
-            <li class="ld-task-buff-line" style="width: 12%;">
+			<li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>>
+				<span>3</span>
+			</li>
+			<li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>>
 				<div class="ld-task-buff-line"></div>
 			</li>
-            <li <eq name="userGeted['quest_status']" value="4"> class="current"</eq>>
-                <span>4</span>
-                <strong>已完成</strong>
-            </li>
-        </ul>
+			<li <eq name="userGeted['quest_status']" value="4"> class="current"</eq>>
+				<span>4</span>
+			</li>
+		</ul>
+		<ul class="ld-task-buff-txt">
+			<li <eq name="userGeted['quest_status']" value="1"> class="current"</eq>><strong>已发布</strong></li>
+			<li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>><strong>已接单</strong></li>
+			<li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>><strong>已提交</strong></li>
+			<li <eq name="userGeted['quest_status']" value="4"> class="current"</eq>><strong>已完成</strong></li>
+		</ul>
+        
         <div class="ld-task-sub">
             <if condition=" $user_info['id'] eq $userGeted['public_user_id'] ">
                 <eq name="userGeted['quest_status']" value="1"><a href="{$userGeted['editProject']}" title="编辑任务">编辑任务</a><a href="javascript:void(0);" onclick='closeQuest("{$userGeted['quest_id']}", "{:U('Ucenter/closeQuest')}");' title="关闭任务">关闭任务</a></eq>
