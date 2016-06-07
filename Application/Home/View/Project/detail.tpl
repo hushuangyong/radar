@@ -41,36 +41,131 @@
     </div>
     <div class="ld-task-blank5"></div>
     <div class="ld-task-buff">
-    	<ul>
-			<li <eq name="userGeted['quest_status']" value="1"> class="current"</eq>>
-				<span>1</span>
-			</li>
-			<li <eq name="userGeted['quest_status']" value="1"> class="current"</eq>>
-				<div class="ld-task-buff-line"></div>
-			</li>
-			<li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>>
-				<span>2</span>
-			</li>
-			<li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>>
-				<div class="ld-task-buff-line"></div>
-			</li>
-			<li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>>
-				<span>3</span>
-			</li>
-			<li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>>
-				<div class="ld-task-buff-line"></div>
-			</li>
-			<li <eq name="userGeted['quest_status']" value="4"> class="current"</eq>>
-				<span>4</span>
-			</li>
-		</ul>
-		<ul class="ld-task-buff-txt">
-			<li <eq name="userGeted['quest_status']" value="1"> class="current"</eq>><strong>已发布</strong></li>
-			<li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>><strong>已接单</strong></li>
-			<li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>><strong>已提交</strong></li>
-			<li <eq name="userGeted['quest_status']" value="4"> class="current"</eq>><strong>已完成</strong></li>
-		</ul>
-        
+    	<eq name="userGeted['quest_status']" value="1">
+    		<ul>
+				<li class="current">
+					<span>1</span>
+				</li>
+				<li class="current">
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li>
+					<span>2</span>
+				</li>
+				<li>
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li>
+					<span>3</span>
+				</li>
+				<li>
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li>
+					<span>4</span>
+				</li>
+			</ul>
+			<ul class="ld-task-buff-txt">
+				<li class="current"><strong>已发布</strong></li>
+				<li><strong>已接单</strong></li>
+				<li><strong>已提交</strong></li>
+				<li><strong>已完成</strong></li>
+			</ul>
+    	</eq>
+    	<eq name="userGeted['quest_status']" value="2">
+    		<ul>
+				<li class="current">
+					<span>1</span>
+				</li>
+				<li class="current">
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li class="current">
+					<span>2</span>
+				</li>
+				<li class="current">
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li>
+					<span>3</span>
+				</li>
+				<li>
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li>
+					<span>4</span>
+				</li>
+			</ul>
+			<ul class="ld-task-buff-txt">
+				<li class="current"><strong>已发布</strong></li>
+				<li class="current"><strong>已接单</strong></li>
+				<li><strong>已提交</strong></li>
+				<li><strong>已完成</strong></li>
+			</ul>
+    	</eq>
+    	<eq name="userGeted['quest_status']" value="3">
+    		<ul>
+				<li class="current">
+					<span>1</span>
+				</li>
+				<li class="current">
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li class="current">
+					<span>2</span>
+				</li>
+				<li class="current">
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li class="current">
+					<span>3</span>
+				</li>
+				<li class="current">
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li>
+					<span>4</span>
+				</li>
+			</ul>
+			<ul class="ld-task-buff-txt">
+				<li class="current"><strong>已发布</strong></li>
+				<li class="current"><strong>已接单</strong></li>
+				<li class="current"><strong>已提交</strong></li>
+				<li><strong>已完成</strong></li>
+			</ul>
+    	</eq>
+    	<eq name="userGeted['quest_status']" value="4">
+    		<ul>
+				<li class="current">
+					<span>1</span>
+				</li>
+				<li class="current">
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li class="current">
+					<span>2</span>
+				</li>
+				<li class="current">
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li class="current">
+					<span>3</span>
+				</li>
+				<li class="current">
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li class="current">
+					<span>4</span>
+				</li>
+			</ul>
+			<ul class="ld-task-buff-txt">
+				<li class="current"><strong>已发布</strong></li>
+				<li class="current"><strong>已接单</strong></li>
+				<li class="current"><strong>已提交</strong></li>
+				<li class="current"><strong>已完成</strong></li>
+			</ul>
+    	</eq>
+    	
         <div class="ld-task-sub">
             <if condition=" $user_info['id'] eq $userGeted['public_user_id'] ">
                 <eq name="userGeted['quest_status']" value="1"><a href="{$userGeted['editProject']}" title="编辑任务">编辑任务</a><a href="javascript:void(0);" onclick='closeQuest("{$userGeted['quest_id']}", "{:U('Ucenter/closeQuest')}");' title="关闭任务">关闭任务</a></eq>

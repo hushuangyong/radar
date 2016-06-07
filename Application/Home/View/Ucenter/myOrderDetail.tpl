@@ -44,28 +44,78 @@
     </div>
     <div class="ld-task-blank5"></div>
     <div class="ld-task-buff-fix">
-    	<ul>
-			<li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>>
-				<span>1</span>
-			</li>
-			<li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>>
-				<div class="ld-task-buff-line"></div>
-			</li>
-			<li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>>
-				<span>2</span>
-			</li>
-			<li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>>
-				<div class="ld-task-buff-line"></div>
-			</li>
-			<li <eq name="userGeted['quest_status']" value="4"> class="current"</eq>>
-				<span>3</span>
-			</li>
-		</ul>
-		<ul class="ld-task-buff-txt">
-			<li <eq name="userGeted['quest_status']" value="2"> class="current"</eq>><strong>已接单</strong></li>
-			<li <eq name="userGeted['quest_status']" value="3"> class="current"</eq>><strong>完成待确认</strong></li>
-			<li <eq name="userGeted['quest_status']" value="4"> class="current"</eq>><strong>已完成</strong></li>
-		</ul>
+    	<eq name="userGeted['quest_status']" value="2">
+    		<ul>
+				<li class="current">
+					<span>1</span>
+				</li>
+				<li class="current">
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li>
+					<span>2</span>
+				</li>
+				<li>
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li>
+					<span>3</span>
+				</li>
+			</ul>
+			<ul class="ld-task-buff-txt">
+				<li class="current"><strong>已接单</strong></li>
+				<li><strong>完成待确认</strong></li>
+				<li><strong>已完成</strong></li>
+			</ul>
+    	</eq>
+    	<eq name="userGeted['quest_status']" value="3">
+    		<ul>
+				<li class="current">
+					<span>1</span>
+				</li>
+				<li class="current">
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li class="current">
+					<span>2</span>
+				</li>
+				<li class="current">
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li>
+					<span>3</span>
+				</li>
+			</ul>
+			<ul class="ld-task-buff-txt">
+				<li class="current"><strong>已接单</strong></li>
+				<li class="current"><strong>完成待确认</strong></li>
+				<li><strong>已完成</strong></li>
+			</ul>
+    	</eq>
+    	<eq name="userGeted['quest_status']" value="4">
+    		<ul>
+				<li class="current">
+					<span>1</span>
+				</li>
+				<li class="current">
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li class="current">
+					<span>2</span>
+				</li>
+				<li class="current">
+					<div class="ld-task-buff-line"></div>
+				</li>
+				<li class="current">
+					<span>3</span>
+				</li>
+			</ul>
+			<ul class="ld-task-buff-txt">
+				<li class="current"><strong>已接单</strong></li>
+				<li class="current"><strong>完成待确认</strong></li>
+				<li class="current"><strong>已完成</strong></li>
+			</ul>
+    	</eq>
         <div class="ld-task-sub">
             <eq name="userGeted.quest_status" value="2"><a class="ld-btn-push confirm_done_quest" href="javascript:void(0);" class="confirm_done_quest" qid="{$userGeted['quest_id']}" title="提交任务">提交任务</a></eq>
             <eq name="userGeted.quest_status" value="3"><a href="javascript:void(0);" class="cannot" title="该任务已提交">该任务已提交</a></eq>
