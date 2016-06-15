@@ -23,15 +23,20 @@ class IndexController extends Controller {
      * 初始化
      */
     public function _initialize() {
+        $this->redis = new \Redis();
+        $this->redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
+
         $refer = $_SERVER['HTTP_REFERER'];
         cookie('refer', $refer); //设置 来源地址
         trace($refer, '设置@Referer@');
         $c_userid = cookie('radar_userid');
         $s_userid = session('user_id');
         if (!empty($c_userid) && empty($s_userid)) {
-            session('user_id', cookie('user_id'));
+            session('user_id', $c_userid);
         }
-        $this->user_id = session('user_id');
+        //从Redis取用户id
+        $redisUserId = $this->redis->get('red_user_id_' . $c_userid);
+        $this->user_id = session('user_id') ? session('user_id') : $redisUserId;
         $this->assign('topNav', array('newest' => U('Index/radar'), 'study' => U('Index/radar', array('type' => 1)), 'purchasing' => U('Index/radar', array('type' => 2)), 'errands' => U('Index/radar', array('type' => 3)), 'second-hand' => U('Index/radar', array('type' => 4)), 'other' => U('Index/radar', array('type' => 5)))); #顶部导航
         $this->assign('publish', U('Ucenter/publishProject')); #发布
         $this->assign('myCenter', U('Ucenter/index')); #我的
@@ -213,6 +218,7 @@ class IndexController extends Controller {
      * 退出登录
      */
     public function logout() {
+        $this->redis->delete('red_user_id_' . cookie('radar_userid'));
         session(null);
         cookie('radar_userid', NULL);
         if (IS_AJAX) {
@@ -240,7 +246,7 @@ class IndexController extends Controller {
         $offset = ($page - 1) * $length;
         $plist = ProjectService::getProject($class_id, $sgkey, $offset, $length);
         $this->assign('plist', $plist);
-        $this->assign('user_id', session('user_id')); //当前用户id
+        $this->assign('user_id', $this->user_id); //当前用户id
         $this->display('index');
     }
 
@@ -282,11 +288,66 @@ class IndexController extends Controller {
     }
 
     /**
+     * 微信网页授权
+     * @author Forest King <86721071@qq.com>
+     * @Date 2016-06-14 09:40
+     */
+    function wechat() {
+        #实例化
+        import("Org.Wechat.Oauth");
+        $wechat = new \Org\Wechat\Oauth($appid = "wxb6df804da6c8a0b5", $appsecret = "9046c3cd971775749e8ca5db3807dbfb", $curl_timeout = 30, $flag = FALSE);
+        $code_ = I('get.code'); #填写第一步获取的code参数
+        $state = I('get.state'); #重定向后会带上state参数，开发者可以填写a-zA-Z0-9的参数值，最多128字节
+        $wechat->setCode($code_);
+
+        $authorize = $wechat->getUserInfo(); #第四步：拉取用户信息(需scope为 snsapi_userinfo)
+
+        if ($authorize['errcode'] == 41001) {
+            $wechat->createOauthUrlForOpenid();
+            $this->error($authorize['errcode'] . "：" . $authorize['errmsg']);
+            exit();
+        }
+        if (!empty($authorize['openid'])) {
+            $userinfo = IndexService::getUserInfoByOPENID($authorize['openid']);
+            if (empty($userinfo)) {
+                $register = IndexService::regist($authorize['nickname'], $authorize['openid'], $authorize['province'], 1, $authorize['openid'], $authorize['nickname'], $authorize['sex'], $authorize['province'], $authorize['city'], $authorize['country'], $authorize['headimgurl'], serialize($authorize['privilege']), $authorize['unionid']);
+                $newUser = "你在校园雷达的用户编号：" . $register . "<br />";
+            } else {
+                $register = $userinfo['id']; #本站的用户id
+                $newUser = "";
+            }
+            $this->redis->set('red_user_id_' . $register, $register, C('DATA_CACHE_TIME'));
+            session('user_id', $register);
+            cookie('radar_userid', $register, 3600 * 24 * 7);
+            $refer = cookie('refer');
+            $this->success($newUser . '您已经以微信身份“' . $authorize['nickname'] . '”登录～', $refer ? $refer : U('Index/radar'), 3);
+        }
+    }
+
+    /**
+     * 第一步：用户同意授权，获取code
+     * 获取微信的网页授权地址
+     * @return string
+     */
+    function getAuthorizeUrl() {
+        $appid = "wxb6df804da6c8a0b5"; #公众号的唯一标识
+        $appsecret = "9046c3cd971775749e8ca5db3807dbfb";
+        $redirect = urlencode(U('Index/wechat', NULl, TRUE, TRUE)); #授权后重定向的回调链接地址，请使用urlencode对链接进行处理
+        $authorizeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" . $appid . "&redirect_uri=" . $redirect . "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
+
+        return $authorizeUrl;
+    }
+
+    /**
      * 登录页面
      * @author Forest King <86721071@qq.com>
      * @date 2016-04-19 19:39
      */
     public function signin() {
+        $oauth2 = $this->getAuthorizeUrl();
+        redirect($oauth2);
+        exit();
+
         $refer = cookie('refer');
         if (!empty($this->user_id)) {
             if (strpos($refer, 'Index/signin.html')) {

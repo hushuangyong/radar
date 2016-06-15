@@ -6,7 +6,7 @@
         <div class="ld-task-item">
             <div class="ld-task-l">
                 <dl>
-                    <dt class="ld-user-avatars"><a href=""><img src="__STATIC__/assets/img/temp/img-user.jpg"/></a></dt>
+                    <dt class="ld-user-avatars"><a href=""><img src="<eq name='user_info.headimgurl' vlaue=''>__STATIC__/assets/img/temp/img-user.jpg<else />{$user_info.headimgurl}</eq>"/></a></dt>
                 </dl>
             </div>
             <div class="ld-task-r">

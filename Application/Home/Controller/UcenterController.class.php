@@ -31,12 +31,17 @@ class UcenterController extends Controller {
      * 初始化
      */
     public function _initialize() {
+        $this->redis = new \Redis();
+        $this->redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
+
         $c_userid = cookie('radar_userid');
         $s_userid = session('user_id');
         if (!empty($c_userid) && empty($s_userid)) {
-            session('user_id', cookie('user_id'));
+            session('user_id', $c_userid);
         }
-        $this->user_id = session('user_id');
+        //从Redis取用户id
+        $redisUserId = $this->redis->get('red_user_id_' . $c_userid);
+        $this->user_id = session('user_id') ? session('user_id') : $redisUserId;
         $this->assign('user_id', $this->user_id);
         $linkUrl = array(
             'publish' => U(CONTROLLER_NAME . '/publishProject'),

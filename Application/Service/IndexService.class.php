@@ -42,6 +42,20 @@ class IndexService extends Model {
     }
 
     /**
+     * 通过OPENID openid 从 user 表 获取用户信息 注册查重
+     * @param string $openid
+     * @return array
+     */
+    public static function getUserInfoByOPENID($openid) {
+        if (empty($openid) || !isset($openid)) {
+            return FALSE;
+        }
+        $data = M('User', 'radar_', 'DB_DTD');
+        $result = $data->field('id,username,email,regtime,last_login,login_ip')->where("`openid` = '%s'", array($openid))->find();
+        return $result;
+    }
+
+    /**
      * 根据用户email更新其密码
      * @param string $email 用户的email
      * @param string $newpass 用户重置的密码
@@ -77,13 +91,14 @@ class IndexService extends Model {
     /**
      * 注册 插入 user && user_ex 表
      */
-    public static function regist($mobile, $password, $email, $school) {
+    public static function regist($mobile, $password, $email, $school, $openid = NULL, $nickname = NULL, $sex = 0, $province = NULL, $city = NULL, $country = NULL, $headimgurl = NULL, $privilege = NULL, $unionid = NULL) {
         $addData = M('User', 'radar_', 'DB_DTD');
         $addData_ex = M('UserEx', 'radar_', 'DB_DTD');
 
         //启动事务
         $addData->startTrans();
         $user_info = array('username' => $mobile, 'password' => md5($password), 'email' => $email, 'regtime' => time(), 'last_login' => time(), 'login_ip' => ip_address());
+        $user_info = array_merge($user_info, array('openid' => $openid, 'nickname' => $nickname, 'sex' => $sex, 'province' => $province, 'city' => $city, 'country' => $country, 'headimgurl' => $headimgurl, 'privilege' => $privilege, 'unionid' => $unionid)); #拉取用户信息
         $user = $addData->add($user_info);
         $user_last_id = $addData->getLastInsID();
 

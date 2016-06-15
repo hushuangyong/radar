@@ -17,14 +17,19 @@ class ProjectController extends Controller {
      * 初始化
      */
     public function _initialize() {
+        $this->redis = new \Redis();
+        $this->redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
+
         $c_userid = cookie('radar_userid');
         $s_userid = session('user_id');
         if (!empty($c_userid) && empty($s_userid)) {
-            session('user_id', cookie('user_id'));
+            session('user_id', $c_userid);
         }
-        $this->user_id = session('user_id');
+        //从Redis取用户id
+        $redisUserId = $this->redis->get('red_user_id_' . $c_userid);
+        $this->user_id = session('user_id') ? session('user_id') : $redisUserId;
         $this->assign('user_id', $this->user_id);
-#公共导航
+        #公共导航
         $linkUrl = array('publish' => U('Ucenter' . '/publishProject'), 'myGetted' => U('Ucenter' . '/orderTaking'), 'indexHome' => U('Index/index'));
         trace($linkUrl);
         $this->assign('pageUrl', $linkUrl);
@@ -62,7 +67,7 @@ class ProjectController extends Controller {
     //项目详情
     public function projectDetail() {
         $quest_id = I('get.pubid', '0', 'intval,abs'); // 项目/任务编号
-        $user_id = session('user_id');
+        $user_id = $this->user_id;
         if ($quest_id > 0) {
             //获取项目详情
             $projectDetail = ProjectService::getProjectDetail($quest_id, $user_id);
