@@ -87,6 +87,9 @@ class UcenterController extends Controller {
         if ($this->user_id) {
             //获取用户与信息
             $userInfo = $this->getUserInfo($this->user_id);
+            if (!empty($userInfo['nickname'])) {
+                $userInfo['username'] = $userInfo['nickname'];
+            }
 
             trace($userInfo);
             $this->assign('user_info', $userInfo);
