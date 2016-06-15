@@ -5,6 +5,7 @@ namespace Home\Controller;
 use Think\Controller;
 use Service\IndexService;
 use Service\ProjectService;
+use Service\UcenterService;
 use Think\Log;
 
 class IndexController extends Controller {
@@ -37,6 +38,9 @@ class IndexController extends Controller {
         //从Redis取用户id
         $redisUserId = $this->redis->get('red_user_id_' . $c_userid);
         $this->user_id = session('user_id') ? session('user_id') : $redisUserId;
+        $this->user_info = UcenterService::getUserInfoM($this->user_id); //获取用户与信息
+        trace($this->user_info);
+        $this->assign('user_info', $this->user_info);
         $this->assign('topNav', array('newest' => U('Index/radar'), 'study' => U('Index/radar', array('type' => 1)), 'purchasing' => U('Index/radar', array('type' => 2)), 'errands' => U('Index/radar', array('type' => 3)), 'second-hand' => U('Index/radar', array('type' => 4)), 'other' => U('Index/radar', array('type' => 5)))); #顶部导航
         $this->assign('publish', U('Ucenter/publishProject')); #发布
         $this->assign('myCenter', U('Ucenter/index')); #我的
@@ -272,7 +276,7 @@ class IndexController extends Controller {
         }
         $length = 10;
         $offset = ($page - 1) * $length;
-        $plist = ProjectService::getProject($class_id, $sgkey, $offset, $length);
+        $plist = ProjectService::getProject($class_id, $sgkey, $offset, $length, $this->user_info['school_id']);
         trace($plist);
         if ('dataJson' == $dataType) {
             sort($plist);
@@ -310,7 +314,7 @@ class IndexController extends Controller {
         if (!empty($authorize['openid'])) {
             $userinfo = IndexService::getUserInfoByOPENID($authorize['openid']);
             if (empty($userinfo)) {
-                $register = IndexService::regist($authorize['nickname'], $authorize['openid'], $authorize['province'], 1, $authorize['openid'], $authorize['nickname'], $authorize['sex'], $authorize['province'], $authorize['city'], $authorize['country'], $authorize['headimgurl'], serialize($authorize['privilege']), $authorize['unionid']);
+                $register = IndexService::regist(NULL, NULL, NULL, 1, $authorize['openid'], $authorize['nickname'], $authorize['sex'], $authorize['province'], $authorize['city'], $authorize['country'], $authorize['headimgurl'], serialize($authorize['privilege']), $authorize['unionid']);
                 $newUser = "你在校园雷达的用户编号：" . $register . "<br />";
             } else {
                 $register = $userinfo['id']; #本站的用户id

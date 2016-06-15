@@ -8,9 +8,12 @@ use Service\UcenterService;
 class ProjectService extends Model {
 
     //从 quest 表 获取所有已发布项目 / 通过 class_id 获取某个类型的所有项目
-    public static function getProject($class_id = 0, $sgkey = null, $offset = 0, $length = 10) {
+    public static function getProject($class_id = 0, $sgkey = null, $offset = 0, $length = 10, $school_id = 0) {
         $data = M('Quest', 'radar_', 'DB_DTD');
         $whereStr = " p1.`end_time` > '" . time() . "'  ";
+        if (session('user_id') && !empty($school_id)) {
+            $whereStr .= " AND p1.`quest_range` = '" . $school_id . "' "; #发布范围
+        }
         if ($class_id > 0) {
             $result = $data->alias('p1')
                     ->field('p1.`quest_id`,public_user_id,quest_title,quest_range,`end_time`,quest_class,address_id,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time,p3.`user_id`,school.`id` AS s_id,school.`name` AS s_name,user.`username` AS public_username , orderuser.`username` AS order_username ')

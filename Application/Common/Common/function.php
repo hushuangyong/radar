@@ -422,6 +422,10 @@ function get_quest_status($status, $keyName = 'name') {
  * @return string
  */
 function phone_number_mask($param) {
-    $outData = substr($param, 0, 4) . '****' . substr($param, -4, 4);
+    if (is_integer($param)) {
+        $outData = substr($param, 0, 4) . '****' . substr($param, -4, 4);
+    } else {
+        $outData = $param;
+    }
     return $outData;
 }
