@@ -115,4 +115,35 @@ class IndexService extends Model {
         }
     }
 
+    /**
+     * 修改用户信息 更新 user && user_ex 表
+     * @author Forest King <86721071@qq.com>
+     * @date 2016-06-16 10:11
+     */
+    public static function modifyUserInfo($mobile, $email, $school) {
+        $userModel = M('User', 'radar_', 'DB_DTD');
+        $userModel_ex = M('UserEx', 'radar_', 'DB_DTD');
+
+        //启动事务
+        $userModel->startTrans();
+
+        #用户信息
+        $user_info = array('username' => $mobile, 'email' => $email,);
+        $user = $userModel->where(" `id` = '%s' ", array(session('user_id')))->save($user_info);
+
+        #扩展信息
+        $user_ex_info = array('school_id' => $school, 'mobile' => $mobile,);
+        $user_ex = $userModel_ex->where(" `user_id` = '%s' ", array(session('user_id')))->save($user_ex_info);
+
+        if ($user || $user_ex) {
+            $userModel->commit();
+            $userModel_ex->commit();
+            return TRUE;
+        } else {
+            $userModel->rollback();
+            $userModel_ex->rollback();
+            return false;
+        }
+    }
+
 }

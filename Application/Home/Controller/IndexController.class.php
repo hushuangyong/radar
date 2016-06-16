@@ -314,16 +314,18 @@ class IndexController extends Controller {
         if (!empty($authorize['openid'])) {
             $userinfo = IndexService::getUserInfoByOPENID($authorize['openid']);
             if (empty($userinfo)) {
-                $register = IndexService::regist('NULL', 'NULL', 'NULL', 1, $authorize['openid'], $authorize['nickname'], $authorize['sex'], $authorize['province'], $authorize['city'], $authorize['country'], $authorize['headimgurl'], serialize($authorize['privilege']), $authorize['unionid']);
+                $register = IndexService::regist('NULL', 'NULL', 'NULL', -1, $authorize['openid'], $authorize['nickname'], $authorize['sex'], $authorize['province'], $authorize['city'], $authorize['country'], $authorize['headimgurl'], serialize($authorize['privilege']), $authorize['unionid']);
                 $newUser = "你在校园雷达的用户编号：" . $register . "<br />";
+                $refer = U('Ucenter/setting');
             } else {
                 $register = $userinfo['id']; #本站的用户id
                 $newUser = "";
+                $refer = cookie('refer');
             }
             $this->redis->set('red_user_id_' . $register, $register, C('DATA_CACHE_TIME'));
             session('user_id', $register);
             cookie('radar_userid', $register, 3600 * 24 * 7);
-            $refer = cookie('refer');
+            // 登录成功后就跳转
             $this->success($newUser . '您已经以微信身份“' . $authorize['nickname'] . '”登录～', $refer ? $refer : U('Index/radar'), 3);
         }
     }

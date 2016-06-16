@@ -12,7 +12,7 @@ class UcenterService extends Model {
             return FALSE;
         }
         $data = M('User', 'radar_', 'DB_DTD');
-        $result = $data->field('p1.`id` ,p1.`username`,p1.`password`,p1.`regtime`,p1.`last_login`,p1.`login_ip`, p1.`nickname` , p1.`sex` ,p1.`headimgurl`  ,p2.`school_id`,p2.`level`,p2.`point`,p2.`vip`')->alias('p1')->join('`radar_user_ex` p2 on p1.`id` = p2.`user_id`', 'LEFT')->where("p1.`id` = '%d'", array($user_id))->find();
+        $result = $data->field('p1.`id` ,p1.`username`,p1.`password` , p1.`email` ,p1.`regtime`,p1.`last_login`,p1.`login_ip`, p1.`nickname` , p1.`sex` ,p1.`headimgurl`  ,p2.`school_id`,p2.`level`,p2.`point`,p2.`vip`,p3.`name` AS `school_name` ')->alias('p1')->join('`radar_user_ex` p2 on p1.`id` = p2.`user_id`', 'LEFT')->join("`radar_school` p3 ON p2.`school_id` = p3.id ", 'LEFT')->where("p1.`id` = '%d'", array($user_id))->find();
         return $result;
     }
 

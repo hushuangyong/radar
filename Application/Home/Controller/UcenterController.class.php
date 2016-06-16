@@ -43,7 +43,19 @@ class UcenterController extends Controller {
         $redisUserId = $this->redis->get('red_user_id_' . $c_userid);
         $this->user_id = session('user_id') ? session('user_id') : $redisUserId;
         $this->assign('user_id', $this->user_id);
+        if (!empty($this->user_id)) {
+            //获取用户与信息
+            $userInfo = $this->getUserInfo($this->user_id);
+            if (!empty($userInfo['nickname'])) {
+                $userInfo['username'] = $userInfo['nickname'];
+            }
+
+            trace($userInfo);
+            $this->assign('user_info', $userInfo);
+        }
+        #页面导航
         $linkUrl = array(
+            'setting' => U(CONTROLLER_NAME . '/setting'), #账号设置
             'publish' => U(CONTROLLER_NAME . '/publishProject'),
             'published' => U(CONTROLLER_NAME . '/orderTaking', array('sgkey' => dtd_encrypt($this->user_id))), #已发布
             'myHome' => U(CONTROLLER_NAME . '/index'),
@@ -76,8 +88,19 @@ class UcenterController extends Controller {
         }else {
             $class = unserialize($classHC);
         }
+        //获取学校列表
+        $schoolList = $this->redis->get('radar_schoolList');
+        if (empty($schoolList)) {
+            $schoolList = IndexService::getSchoolList();
+            $this->redis->set('radar_schoolList', serialize($schoolList));
+        } else {
+            $schoolList = unserialize($schoolList);
+        }
+        trace($schoolList);
+
         $this->assign('range', $range);
         $this->assign('rclass', $class);
+        $this->assign('schoolList', $schoolList);
     }
 
     /**
@@ -85,14 +108,7 @@ class UcenterController extends Controller {
      */
     public function index() {
         if ($this->user_id) {
-            //获取用户与信息
-            $userInfo = $this->getUserInfo($this->user_id);
-            if (!empty($userInfo['nickname'])) {
-                $userInfo['username'] = $userInfo['nickname'];
-            }
 
-            trace($userInfo);
-            $this->assign('user_info', $userInfo);
 
             $this->display();
         } else {
@@ -1082,6 +1098,62 @@ class UcenterController extends Controller {
 
         echo json_encode($result);
         exit();
+    }
+
+    /**
+     * 账户设置
+     * @author Forest King <86721071@qq.com>
+     * @date 2016-06-16 11:25
+     */
+    public function setting() {
+        if ($this->user_id) {
+
+            $this->display();
+        } else {
+            $this->redirect('Index/signin');
+        }
+    }
+
+    /**
+     * 更新用户信息
+     * @author Forest King <86721071@qq.com>
+     * @date 2016-06-16 13:30
+     */
+    public function setUserInfo() {
+        if (IS_AJAX && $this->user_id) {
+            $username = I('post.username', '');
+            $email = I('post.email', '');
+            $school = I('post.school', '');
+
+            if ($username && $email) {
+                //验证处理参数
+                if (!isMobile($username)) {
+                    $result['code'] = 401;
+                    $result['msg'] = '手机号格式错误~';
+                } else if (!is_email($email)) {
+                    $result['code'] = 402;
+                    $result['msg'] = '邮箱格式错误~';
+                } else {
+                    $flag = IndexService::modifyUserInfo($username, $email, $school);
+                    if (TRUE == $flag) {
+                        $result['code'] = 200;
+                        $result['msg'] = 'OK';
+                        session('radar_userinfo_' . $this->user_id, NULL); #清空该用户的缓存信息
+                    } else {
+                        $result['code'] = '201';
+                        $result['msg'] = '修改失败～';
+                    }
+                }
+            } else {
+                $result['code'] = 403;
+                $result['msg'] = '手机号和邮箱不能为空~';
+            }
+        } else {
+            $result['code'] = 404;
+            $result['msg'] = '非法操作';
+        }
+
+        $this->ajaxreturn($result);
     }
 
 }
