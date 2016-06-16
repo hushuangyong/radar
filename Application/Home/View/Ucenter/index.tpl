@@ -71,7 +71,7 @@
         </ul>
     </div>
 
-    <footer data-am-widget="footer" class="am-footer am-footer-default ld-home-footer" data-am-footer="{  }">
+    <footer data-am-widget="footer" class="am-footer am-footer-default ld-home-footer" data-am-footer="{  }" style="display: none;">
         <div class="ld-comm-btn">
             <a href="{:U('Index/logout')}">退出</a>
         </div>

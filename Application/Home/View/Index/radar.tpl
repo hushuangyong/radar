@@ -39,7 +39,7 @@
                 <a href="{$myCenter}"><img src="__STATIC__/assets/img/icn-nav-b2.png"/>我的</a>
             </li>
             <eq name="user_id" value="">
-            <li class="ld-nav-btn"><a href="{$signin}">登录</a><a href="{$signup}">注册</a></li>
+            <li class="ld-nav-btn"><a href="{$signin}" style="width:90%;" title="登录">登录</a><!--<a href="{$signup}">注册</a>--></li>
             </eq>
         </ul>
         <div class="ld-nav-mask"></div>
