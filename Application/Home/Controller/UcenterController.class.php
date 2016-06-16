@@ -46,7 +46,7 @@ class UcenterController extends Controller {
         if (!empty($this->user_id)) {
             //获取用户与信息
             $userInfo = $this->getUserInfo($this->user_id);
-            if (!empty($userInfo['nickname'])) {
+            if (!isMobile($userInfo['username']) && !empty($userInfo['nickname'])) {
                 $userInfo['username'] = $userInfo['nickname'];
             }
 
