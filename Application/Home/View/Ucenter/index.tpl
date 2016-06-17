@@ -6,13 +6,13 @@
         <div class="ld-task-item">
             <div class="ld-task-l">
                 <dl>
-                    <dt class="ld-user-avatars"><a href="{$pageUrl['setting']}"><img src="<eq name='user_info.headimgurl' vlaue=''>__STATIC__/assets/img/temp/img-user.jpg<else />{$user_info.headimgurl}</eq>"/></a></dt>
+                    <dt class="ld-user-avatars"><a href="{$pageUrl['setting']}" tilte="{$user_info['nickname']}"><img src="<eq name='user_info.headimgurl' vlaue=''>__STATIC__/assets/img/temp/img-user.jpg<else />{$user_info.headimgurl}</eq>"/></a></dt>
                 </dl>
             </div>
             <div class="ld-task-r">
                 <div class="ld-user-title">
                     <h4>
-                        <a class="ld-task-h4" href="{$pageUrl['setting']}" title='个人设置'>{$user_info['username']}<img class="ld-user-lv" src="__STATIC__/assets/img/icn-user-lv.png"/></a>
+                        <a class="ld-task-h4" href="{$pageUrl['setting']}" title='个人设置'><if condition="$user_info.nickname neq '' " value="">{$user_info['nickname']}<else />{$user_info['username']}</if><img class="ld-user-lv" src="__STATIC__/assets/img/icn-user-lv.png"/></a>
                     </h4>
                 </div>
             </div>
