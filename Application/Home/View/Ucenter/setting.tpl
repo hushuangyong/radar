@@ -44,7 +44,7 @@
                                         <foreach name='schoolList' item='list'>
                                             <option value="{$list.id}" title='{$list.name}' <eq name="$list.id" value="$user_info.school_id">selected="selected"</eq> >{$list.name}</option>
                                         </foreach>
-                                    </select><else />{$user_info.school_name}<input type="hidden" name="school" id="school" value="{$user_info.school_id}" /></if>
+                                    </select><else />{$user_info.school_name|default="这家伙很懒，什么也没留下"}<input type="hidden" name="school" id="school" value="{$user_info.school_id}" /></if>
                             </div>
                         </li>
 
