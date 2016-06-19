@@ -266,6 +266,9 @@ class IndexController extends Controller {
      */
     public function radar() {
         trace($this->user_id, '当前用户ID');
+        if($this->user_id && FALSE == inspectuser($this->user_info)) {
+            $this->error('您的个人信息需要补全。', U('Ucenter/setting'), 3);
+        }
         //获取项目列表
         $dataType = I('dataType', '');
         $class_id = I('type', 0); //类别

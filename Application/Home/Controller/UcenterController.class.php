@@ -926,6 +926,9 @@ class UcenterController extends Controller {
      */
     public function publishProject() {
         if ($this->user_id) {
+            if(FALSE == inspectuser($this->user_info)) {
+                $this->error('您的个人信息需要补全。', U('Ucenter/setting'), 3);
+            }
             UcenterService::del_temp_img($this->user_id); //删除所有属于自己的临时图片
             //获取个人收货地址
             $userAddressArr = UcenterService::getUserAddress($this->user_id, '', TRUE);

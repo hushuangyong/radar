@@ -429,3 +429,15 @@ function phone_number_mask($param) {
     }
     return $outData;
 }
+
+/**
+ * 检查用户名、邮箱、所在学校的信息是否符合指定格式
+ * @param array $param 用户信息
+ * @return boolean
+ */
+function inspectuser($param=array()){
+	if($param['username'] == 'NULL' || !isMobile($param['username']) || !is_email($param['email']) || $param['email'] == 'NULL' || $param['school_id'] == '-1' || $param['school_id'] == '0' ) {
+		return FALSE;
+	}
+	return TRUE;
+}

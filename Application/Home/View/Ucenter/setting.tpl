@@ -37,6 +37,28 @@
                             </div>
                         </li>
                         <li>
+                            <span class="ld-task-from-l">注册时间</span>
+                            <div class="ld-task-from-r">
+                                {$user_info.regtime|date="Y-m-d H:i:s",###}
+                            </div>
+                        </li>
+                        <li>
+                            <span class="ld-task-from-l">上次登录</span>
+                            <div class="ld-task-from-r">
+                                {$user_info.last_login|date="Y-m-d H:i:s",###}
+                            </div>
+                        </li>
+                        <li>
+                            <span class="ld-task-from-l">登录IP</span>
+                            <div class="ld-task-from-r">
+                                {$user_info.login_ip}
+                                    <script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"type="text/ecmascript"></script>
+                                    <script type="text/javascript">
+                                        document.write(remote_ip_info["country"] +","+remote_ip_info["province"] + " " + ',' +remote_ip_info["city"] + " "+remote_ip_info["district"] );
+                                </script>
+                            </div>
+                        </li>
+                        <li>
                             <span class="ld-task-from-l">所在学校</span>
                             <div class="ld-task-from-r" id="">
                                 <if condition="$user_info.school_id eq '0' OR $user_info.school_id eq '-1' ">
