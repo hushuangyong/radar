@@ -45,13 +45,13 @@ class UcenterController extends Controller {
         $this->assign('user_id', $this->user_id);
         if (!empty($this->user_id)) {
             //获取用户与信息
-            $userInfo = $this->getUserInfo($this->user_id);
-            if (!isMobile($userInfo['username']) && !empty($userInfo['nickname'])) {
-                $userInfo['username'] = $userInfo['nickname'];
+            $this->userInfo = $this->getUserInfo($this->user_id);
+            if (!isMobile($this->userInfo['username']) && !empty($this->userInfo['nickname'])) {
+                $this->userInfo['username'] = $this->userInfo['nickname'];
             }
 
-            trace($userInfo);
-            $this->assign('user_info', $userInfo);
+            trace($this->userInfo);
+            $this->assign('user_info', $this->userInfo);
         }
         #页面导航
         $linkUrl = array(
@@ -373,12 +373,15 @@ class UcenterController extends Controller {
                 if ($title && $range && $rclass && $userAddress && $content && $award && $checkval) {
                     //验证处理参数
                     $title = trim($title);
-                    if (mb_strlen($title) > 30) {
+                    if (mb_strlen($title) > 45) {
                         $this->ajaxreturn(array('code' => '4001', 'msg' => '标题不超过15个字符！您已经输入了' . mb_strlen($title) . '个字符。'));
                         exit();
                     }
+                    if ($range == 100 || $range == '100') {
+                        $range = $this->userInfo['school_id']; #如果用户选择了“校内”，就保存其学校id到发布范围
+                    }
                     $content = trim($content);
-                    if (mb_strlen($content) > 280) {
+                    if (mb_strlen($content) > 420) {
                         $this->ajaxreturn(array('code' => '4002', 'msg' => '任务描述不超过140个字符！您已经输入了' . mb_strlen($award) . '个字符。'));
                         exit();
                     }
@@ -807,15 +810,24 @@ class UcenterController extends Controller {
                     $userGeted[$key]['user_id'] = UcenterService::isCollection($this->user_id, $value['quest_id']); #是否收藏
                     $userGeted[$key]['dateline'] = ($value['end_time'] > time()) ? ( $value['end_time'] - time()) : 0; #剩余时间
                     $userGeted[$key]['userPublishedimg'] = UcenterService::getUserPublishedDetailImg($value['quest_id'], 4); #项目图片
+                    if (empty($value['headimgurl'])) {
+                        $userGeted[$key]['headimg'] = "/Public/assets/img/temp/img-user.jpg"; #发布人的头像
+                    } else {
+                        $userGeted[$key]['headimg'] = trim($value['headimgurl']); #发布人的头像
+                    }
                 }
             }
-            $statusArr = array(array('name' => '已接收', 'url' => U(CONTROLLER_NAME . '/' . ACTION_NAME, 'status=2&sgkey=' . $sgkey), 'status' => 2,), array('name' => '完成待确认', 'url' => U(CONTROLLER_NAME . '/' . ACTION_NAME, 'status=3&sgkey=' . $sgkey), 'status' => 3,), array('name' => '已结束', 'url' => U(CONTROLLER_NAME . '/' . ACTION_NAME, 'status=4&sgkey=' . $sgkey), 'status' => 4,));
+            $statusArr = array(array('name' => '已发布', 'url' => U(CONTROLLER_NAME . '/' . ACTION_NAME, 'status=1&sgkey=' . $sgkey), 'status' => 1,), array('name' => '已接收', 'url' => U(CONTROLLER_NAME . '/' . ACTION_NAME, 'status=2&sgkey=' . $sgkey), 'status' => 2,), array('name' => '完成待确认', 'url' => U(CONTROLLER_NAME . '/' . ACTION_NAME, 'status=3&sgkey=' . $sgkey), 'status' => 3,), array('name' => '已结束', 'url' => U(CONTROLLER_NAME . '/' . ACTION_NAME, 'status=4&sgkey=' . $sgkey), 'status' => 4,));
+            if (!$sgkey) {
+                unset($statusArr[0]);
+            }
             trace($status, '状态码');
             trace($statusArr, '状态');
             trace($userGeted);
 
             $this->assign('status', $status);
             $this->assign('orderStatus', $statusArr);
+            $this->assign('orderStatusCount', count($statusArr));
             $this->assign('userGeted', $userGeted);
             $this->display();
         } else {
@@ -926,7 +938,7 @@ class UcenterController extends Controller {
      */
     public function publishProject() {
         if ($this->user_id) {
-            if(FALSE == inspectuser($this->user_info)) {
+            if (FALSE == inspectuser($this->user_info)) {
                 $this->error('您的个人信息需要补全。', U('Ucenter/setting'), 3);
             }
             UcenterService::del_temp_img($this->user_id); //删除所有属于自己的临时图片

@@ -394,6 +394,11 @@ ul li, ol li { margin: 0; padding: 0; list-style: none; }
 .ld-comm-top .ld-nav-three li a { display: inline-block; color: #666; }
 .ld-comm-top .ld-nav-three li.current { width: 50%; }
 .ld-comm-top .ld-nav-three li.current a { color: #4d56a3; font-size: 2rem; }
+.ld-comm-top .ld-nav-four { width: 100%; margin: 1rem 0; overflow: hidden; }
+.ld-comm-top .ld-nav-four li { float: left; width: 20%; text-align: center; font-size: 1.5rem; line-height: 2rem; }
+.ld-comm-top .ld-nav-four li a { display: inline-block; color: #666; }
+.ld-comm-top .ld-nav-four li.current { width: 40%; }
+.ld-comm-top .ld-nav-four li.current a { color: #4d56a3; font-size: 2rem; }
 
 .ld-comm-btn { text-align: center; margin: 0 3rem; padding: 1rem 0; }
 .ld-comm-btn a { display: inline-block; border-radius: 1.5rem; width: 100%; height: 3rem; font-size: 2rem; line-height: 3rem; color: #fff; background: #4d56a3; }

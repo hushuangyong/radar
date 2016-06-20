@@ -3,7 +3,7 @@
 <body>
 
     <div class="ld-comm-top">
-        <ul class="ld-nav-three">
+        <ul class="<if condition='$orderStatusCount eq 3'>ld-nav-three</if><if condition='$orderStatusCount eq 4'>ld-nav-four</if>">
             <foreach name="orderStatus" item="list">
                 <li <eq name='status' value="$list['status']">class="current"</eq> ><a href="{$list['url']}" title="{$list['name']}">{$list['name']}</a></li>
             </foreach>
@@ -17,7 +17,7 @@
                     <div class="ld-task-item ld-task-item-fix">
                         <div class="ld-task-l">
                             <dl>
-                                <dt class="ld-user-avatars"><a href="{$list.sgkeyUrl}"><img src="__STATIC__/assets/img/temp/img-user.jpg"/></a></dt>
+                                <dt class="ld-user-avatars"><a href="{$list.sgkeyUrl}"><img src="{$list['headimg']}"/></a></dt>
                                 <!--<dd class="ld-task-l-btn">
                                     奖 励
                                     <strong>{$list['quest_reward']}</strong>
@@ -36,14 +36,14 @@
                             </div>
                             <p class="ld-task-t"><span>状态：{$list.status_name}</span></p>
                             <p class="ld-task-t"  onclick="goProjectDetail('{$list.projectDetail}');">{$list.quest_title}</p>
-                            
-                            <!--<p class="ld-task-info-m"  onclick="goProjectDetail('{$list.projectDetail}');">{$list.quest_intro} </p>
-                            <ul class="ld-task-imgs">
-                                <foreach name="list['userPublishedimg']" item="userImg" key="kImg" >
-                                    <li><a href="{:U('Ucenter/myOrderDetail')}?pubid={$list.quest_id}"><img src="__UPLOAD__/{$userImg['pic']}"/></a></li>
-                                </foreach>
 
-                            </ul>-->
+<!--<p class="ld-task-info-m"  onclick="goProjectDetail('{$list.projectDetail}');">{$list.quest_intro} </p>
+<ul class="ld-task-imgs">
+    <foreach name="list['userPublishedimg']" item="userImg" key="kImg" >
+        <li><a href="{:U('Ucenter/myOrderDetail')}?pubid={$list.quest_id}"><img src="__UPLOAD__/{$userImg['pic']}"/></a></li>
+    </foreach>
+
+</ul>-->
                         </div>
                     </div>
                     <!--<div class="ld-my-task-bot">

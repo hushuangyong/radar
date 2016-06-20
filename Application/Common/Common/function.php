@@ -422,7 +422,7 @@ function get_quest_status($status, $keyName = 'name') {
  * @return string
  */
 function phone_number_mask($param) {
-    if (is_integer($param)) {
+    if (isMobile($param)) {
         $outData = substr($param, 0, 4) . '****' . substr($param, -4, 4);
     } else {
         $outData = $param;
@@ -435,9 +435,9 @@ function phone_number_mask($param) {
  * @param array $param 用户信息
  * @return boolean
  */
-function inspectuser($param=array()){
-	if($param['username'] == 'NULL' || !isMobile($param['username']) || !is_email($param['email']) || $param['email'] == 'NULL' || $param['school_id'] == '-1' || $param['school_id'] == '0' ) {
-		return FALSE;
-	}
-	return TRUE;
+function inspectuser($param = array()) {
+    if ($param['username'] == 'NULL' || !isMobile($param['username']) || !is_email($param['email']) || $param['email'] == 'NULL' || $param['school_id'] == '-1' || $param['school_id'] == '0') {
+        return FALSE;
+    }
+    return TRUE;
 }

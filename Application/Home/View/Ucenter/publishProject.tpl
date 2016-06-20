@@ -35,7 +35,7 @@
                         <li>
                             <span class="ld-task-from-l">发布范围</span>
                             <div class="ld-task-from-r">
-                                <input type="radio" name="range" id="" value="100" <eq name="userPublished['quest_range']" value="100">checked = 'checked'</eq> /><label for="radio1">校内</label>
+                                <input type="radio" name="range" id="" value="100" <eq name="userPublished['quest_range']" value="100">checked = 'checked'</eq> /><label for="radio1">校内[{$user_info['school_name']}]</label>
                                 <input type="radio" name="range" id="" value="-1" <eq name="userPublished['quest_range']" value="-1">checked = 'checked'</eq> /><label for="radio1">全部</label>
                             </div>
                         </li>

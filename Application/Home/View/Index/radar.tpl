@@ -53,7 +53,7 @@
                 <div class="ld-task-item" projectId="{$k}">
                     <div class="ld-task-l">
                         <dl>
-                            <dt class="ld-user-avatars"><a href="{$list[0]['sgkeyUrl']}" title="{$list[0]['quest_title']}"><img src="__STATIC__/assets/img/temp/img-user.jpg"/></a></dt>
+                            <dt class="ld-user-avatars"><a href="{$list[0]['sgkeyUrl']}" title="{$list[0]['quest_title']}"><img src="{$list[0]['headimg']}"/></a></dt>
                             <dd class="ld-task-l-btn">奖 励<strong>{$list[0]['quest_reward']}</strong></dd>
                             <dd class="ld-user-time"></dd>
                         </dl>
@@ -75,8 +75,8 @@
                         <div class="ld-task-time timer">倒计时：<eq name="list[0]['quest_status']" value="4">--:--:--<else /><span class="leave{$list[0]['quest_id']}" id="leave{$list[0]['quest_id']}" remind="{$list[0].dateline}">正在计时</span><script> $(function (){showTime("{$list[0]['quest_id']}");}
                             );</script></eq></div>
                         <a class="ld-task-info" href="{$list[0]['projectDetail']}" title="{$list[0]['quest_title']}">
-                        	<p class="ld-task-info-m-t">{$list[0]['quest_title']}</p>
-                			<p class="ld-task-info-m">{$list[0]['quest_intro']} </p>
+                            <p class="ld-task-info-m-t">{$list[0]['quest_title']}</p>
+                            <p class="ld-task-info-m">{$list[0]['quest_intro']} </p>
                         </a>
                         <ul class="ld-task-imgs">
                             <foreach name="list[0]['userPublishedimg']" item="userImg" key="kImg" >
@@ -176,7 +176,7 @@
                             $('.operation').hide();
                         } else {
                             for (var i = 0; i < resultArr.length; i++) {
-                                html += '<div class="ld-task-item" project_id="' + resultArr[i][0]['quest_id'] + '"><div class="ld-task-l"><dl><dt class="ld-user-avatars"><a href="' + resultArr[i][0]['projectDetail'] + '"><img src="/Public/assets/img/temp/img-user.jpg"/></a></dt><dd class="ld-task-l-btn"><a href="#' + resultArr[i][0]['projectDetail'] + '" >奖 励<strong>' + resultArr[i][0]['quest_reward'] + '</strong></a></dd><dd class="">';
+                                html += '<div class="ld-task-item" project_id="' + resultArr[i][0]['quest_id'] + '"><div class="ld-task-l"><dl><dt class="ld-user-avatars"><a href="' + resultArr[i][0]['projectDetail'] + '"><img src="' + resultArr[i][0]['headimg'] + '"/></a></dt><dd class="ld-task-l-btn"><a href="#' + resultArr[i][0]['projectDetail'] + '" >奖 励<strong>' + resultArr[i][0]['quest_reward'] + '</strong></a></dd><dd class="">';
                                 html += '</dd></dl></div>';
                                 html += '<div class="ld-task-r"><div class="ld-task-title get_order"><h4><a class="ld-task-h4" href="' + resultArr[i][0]['projectDetail'] + '">' + resultArr[i][0]['public_username'] + '<img class="ld-user-lv" src="/Public/assets/img/icn-user-lv.png"><em class="ld-task-tips">' + resultArr[i][0]['s_name'] + '</em></a>';
 

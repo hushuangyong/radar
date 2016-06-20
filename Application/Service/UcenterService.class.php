@@ -242,7 +242,7 @@ class UcenterService extends Model {
         if (!empty($status) && $status > 0) {
             $where['quest_status'] = $status;
         }
-        $result = $data->field(' `quest_id`, `quest_title`, `quest_range`, `end_time`, `quest_class`, `address_id`, `quest_reward`, `quest_reward_type`, `quest_intro`, `quest_pic`, `quest_status`, `public_time`, `public_user_id`, `order_time`, `order_user_id`, user.`username` AS public_username')->alias('p1')->join('left join `radar_user` user on p1.`public_user_id` = user.`id` ')->where($where)->select();
+        $result = $data->field(' `quest_id`, `quest_title`, `quest_range`, `end_time`, `quest_class`, `address_id`, `quest_reward`, `quest_reward_type`, `quest_intro`, `quest_pic`, `quest_status`, `public_time`, `public_user_id`, `order_time`, `order_user_id`, user.`username` AS public_username , user.`headimgurl`')->alias('p1')->join('left join `radar_user` user on p1.`public_user_id` = user.`id` ')->where($where)->select();
         return $result;
     }
 
