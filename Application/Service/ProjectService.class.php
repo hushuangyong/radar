@@ -87,7 +87,7 @@ class ProjectService extends Model {
                 ->where("p1.`quest_id` = '%d'", array($quest_id))
                 ->find();
         } else {
-            $result = $data->field('quest_id,public_user_id,quest_title,quest_range,`end_time`,quest_class,p3.`address_info` AS quest_address,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time ,p3.`province` ,p3.`city` ,p3.`distin` ,user.`username` AS public_username , orderuser.`username` AS order_username ')->alias('p1')->join('left join `radar_user` user on p1.`public_user_id` = user.`id` ')->join('left join `radar_user` orderuser on p1.`order_user_id` = orderuser.`id` ')->join('left join `radar_address` p3 on p1.`address_id` = p3.`address_id` ')->where("`quest_id` = '%d'", array($quest_id))->find();
+            $result = $data->field('quest_id,public_user_id,quest_title,quest_range,`end_time`,quest_class,p3.`address_info` AS quest_address,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time ,p3.`province` ,p3.`city` ,p3.`distin` ,user.`username` AS public_username , orderuser.`username` AS order_username , user.`headimgurl` ')->alias('p1')->join('left join `radar_user` user on p1.`public_user_id` = user.`id` ')->join('left join `radar_user` orderuser on p1.`order_user_id` = orderuser.`id` ')->join('left join `radar_address` p3 on p1.`address_id` = p3.`address_id` ')->where("`quest_id` = '%d'", array($quest_id))->find();
         }
 
         if (!empty($result) && is_array($result)) {
