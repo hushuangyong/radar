@@ -34,7 +34,7 @@
                                     </span>
                                 </h4>
                             </div>
-                            <p class="ld-task-t"><span>状态：{$list.status_name}</span></p>
+                            <p class="ld-task-t"  onclick="goProjectDetail('{$list.projectDetail}');"><span>状态：{$list.status_name}</span></p>
                             <p class="ld-task-t"  onclick="goProjectDetail('{$list.projectDetail}');">{$list.quest_title}</p>
 
 <!--<p class="ld-task-info-m"  onclick="goProjectDetail('{$list.projectDetail}');">{$list.quest_intro} </p>
@@ -64,7 +64,7 @@
                 </div>
             </foreach>
             <else />
-            <div style="text-align:center;margin:10px;">暂无记录</div>
+            <div style="text-align:center;margin:10px;">暂无相关记录</div>
         </notempty>
 
         <div class="ld-task" style='display:none;'>

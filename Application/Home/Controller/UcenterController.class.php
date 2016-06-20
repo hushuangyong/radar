@@ -50,18 +50,19 @@ class UcenterController extends Controller {
                 $this->userInfo['username'] = $this->userInfo['nickname'];
             }
 
-            trace($this->userInfo);
+            trace($this->userInfo, __LINE__);
             $this->assign('user_info', $this->userInfo);
         }
         #页面导航
         $linkUrl = array(
             'setting' => U(CONTROLLER_NAME . '/setting'), #账号设置
             'publish' => U(CONTROLLER_NAME . '/publishProject'),
-            'published' => U(CONTROLLER_NAME . '/orderTaking', array('sgkey' => dtd_encrypt($this->user_id))), #已发布
+            'published' => U(CONTROLLER_NAME . '/orderTaking', array('status' => 1, 'sgkey' => dtd_encrypt($this->user_id))), #已发布
             'myHome' => U(CONTROLLER_NAME . '/index'),
             'myGetted' => U(CONTROLLER_NAME . '/orderTaking'),
             'myFocus' => U(CONTROLLER_NAME . '/myCollectionTask'),
             'userAddress' => U(CONTROLLER_NAME . '/address'), #地址管理
+            'addAddress' => U(CONTROLLER_NAME . '/addr'), #添加地址
             'aboutUs' => U(CONTROLLER_NAME . '/aboutUs'),
             'indexHome' => U('Index/index'));
         trace($linkUrl);
@@ -124,7 +125,7 @@ class UcenterController extends Controller {
             //获取个人已收藏项目列表
             $userPublished = UcenterService::getCollection($this->user_id);
 
-            trace($userPublished);
+            trace($userPublished, __LINE__);
             $this->assign('dataList', $userPublished);
             $this->display();
         } else {
@@ -139,7 +140,7 @@ class UcenterController extends Controller {
         if ($this->user_id) {
             //获取个人已收藏项目列表
             $userPublished = UcenterService::getFollow($this->user_id);
-            trace($userPublished);
+            trace($userPublished, __LINE__);
 
             $this->assign('dataList', $userPublished);
             $this->display();
@@ -857,7 +858,7 @@ class UcenterController extends Controller {
                 $userGeted['userPublishedimg'] = UcenterService::getUserPublishedDetailImg($userGeted['quest_id'], 4); #项目图片
                 //获取用户与信息
                 $user_info = $this->getUserInfo($this->user_id);
-                trace($user_info);
+                trace($user_info, __LINE__);
                 trace($userGeted);
                 $this->assign('user_info', $user_info);
                 $this->assign('userGeted', $userGeted);
@@ -1138,9 +1139,10 @@ class UcenterController extends Controller {
         if (IS_AJAX && $this->user_id) {
             $username = I('post.username', '');
             $email = I('post.email', '');
+            $realname = I('post.realname', '');
             $school = I('post.school', '');
 
-            if ($username && $email) {
+            if ($username && $email && $realname) {
                 //验证处理参数
                 if (!isMobile($username)) {
                     $result['code'] = 401;
@@ -1149,7 +1151,7 @@ class UcenterController extends Controller {
                     $result['code'] = 402;
                     $result['msg'] = '邮箱格式错误~';
                 } else {
-                    $flag = IndexService::modifyUserInfo($username, $email, $school);
+                    $flag = IndexService::modifyUserInfo($username, $email, $school, $realname);
                     if (TRUE == $flag) {
                         $result['code'] = 200;
                         $result['msg'] = 'OK';
@@ -1161,7 +1163,7 @@ class UcenterController extends Controller {
                 }
             } else {
                 $result['code'] = 403;
-                $result['msg'] = '手机号和邮箱不能为空~';
+                $result['msg'] = '手机号和邮箱及姓名不能为空~';
             }
         } else {
             $result['code'] = 404;

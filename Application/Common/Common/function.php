@@ -436,7 +436,7 @@ function phone_number_mask($param) {
  * @return boolean
  */
 function inspectuser($param = array()) {
-    if ($param['username'] == 'NULL' || !isMobile($param['username']) || !is_email($param['email']) || $param['email'] == 'NULL' || $param['school_id'] == '-1' || $param['school_id'] == '0') {
+    if ($param['username'] == 'NULL' || !isMobile($param['username']) || !is_email($param['email']) || $param['email'] == 'NULL' || empty($param['realname']) || $param['school_id'] == '-1' || $param['school_id'] == '0') {
         return FALSE;
     }
     return TRUE;

@@ -52,10 +52,16 @@
                             <span class="ld-task-from-l">登录IP</span>
                             <div class="ld-task-from-r">
                                 {$user_info.login_ip}
-                                    <script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"type="text/ecmascript"></script>
-                                    <script type="text/javascript">
-                                        document.write(remote_ip_info["country"] +","+remote_ip_info["province"] + " " + ',' +remote_ip_info["city"] + " "+remote_ip_info["district"] );
+                                <script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"type="text/ecmascript"></script>
+                                <script type="text/javascript">
+                                    document.write(remote_ip_info["country"] + "," + remote_ip_info["province"] + " " + ',' + remote_ip_info["city"] + " " + remote_ip_info["district"]);
                                 </script>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="ld-task-from-l">姓名</span>
+                            <div class="ld-task-from-r">
+                                <input class="ld-input" type="type" name="realname" id="realname" value="{$user_info.realname}" placeholder="您的名字，方便校友联系" />
                             </div>
                         </li>
                         <li>
@@ -97,6 +103,7 @@
                 //处理参数
                 var username = $('#username').val();
                 var email = $('#email').val();
+                var realname = $('#realname').val();
                 var school = $('#school').val();
 
                 if (!regmb.test(username)) {
@@ -111,16 +118,22 @@
                     return false;
                 }
 
+                if (realname == '') {
+                    alert("请先填写您的姓名~");
+                    $('#realname').focus();
+                    return false;
+                }
+
                 if (school == '') {
                     alert("清选择学校~");
                     $('#school').focus();
                     return false;
                 }
 
-                console.log(username + "@" + email + "@" + school);
+                console.log(username + "@" + email + '@' + realname + "@" + school);
 
                 //提交
-                if (username && email) {
+                if (username && email && realname) {
                     $("#nextstep").attr("submiting", '1').text("提交中...");
                     var params = $('#infoPost').serialize(); //序列化表单的值
                     $.ajax({

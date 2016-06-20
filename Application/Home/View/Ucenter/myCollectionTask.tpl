@@ -16,7 +16,7 @@
                     <div class="ld-task-item">
                         <div class="ld-task-l">
                             <dl>
-                                <dt class="ld-user-avatars"><a href="{$list.sgkeyUrl}"><img src="__STATIC__/assets/img/temp/img-user.jpg"/></a></dt>
+                                <dt class="ld-user-avatars"><a href="{$list.sgkeyUrl}"><img src="{$list['headimg']}"/></a></dt>
                             </dl>
                             <div class="ld-task-l-btn">
                                 奖 励

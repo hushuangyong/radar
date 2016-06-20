@@ -18,7 +18,7 @@
                         <php>$url['sgkey'] = dtd_encrypt($list['user_id']);</php>
                         <li>
                             <dl>
-                                <dt class="ld-user-avatars"><a href="{:U('Index/radar',array('sgkey'=>$url['sgkey']))}"><img src="__STATIC__/assets/img/temp/img-user.jpg"/></a></dt>
+                                <dt class="ld-user-avatars"><a href="{:U('Index/radar',array('sgkey'=>$url['sgkey']))}" title="{$list['nickname']}"><img src="{$list['headimg']}"/></a></dt>
                             </dl>
                             <h4>
                                 <a class="ld-task-h4" href="{:U('Index/radar',array('sgkey'=>$url['sgkey']))}">{$list.id}/{$list.username}<img class="ld-list-r" src="__STATIC__/assets/img/icon/icn-rightside.png"/></a>

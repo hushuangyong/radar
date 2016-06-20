@@ -10,7 +10,7 @@
         <div class="ld-task-item">
             <div class="ld-task-l">
                 <dl>
-                    <dt class="ld-user-avatars"><a href="{$userGeted.sgkeyUrl}"><img src="__STATIC__/assets/img/temp/img-user.jpg"/></a></dt>
+                    <dt class="ld-user-avatars"><a href="{$userGeted.sgkeyUrl}"><img src="{$userGeted['headimg']}"/></a></dt>
                 </dl>
             </div>
             <div class="ld-task-r">
@@ -44,78 +44,78 @@
     </div>
     <div class="ld-task-blank5"></div>
     <div class="ld-task-buff-fix">
-    	<eq name="userGeted['quest_status']" value="2">
-    		<ul>
-				<li class="current">
-					<span>1</span>
-				</li>
-				<li class="current">
-					<div class="ld-task-buff-line"></div>
-				</li>
-				<li>
-					<span>2</span>
-				</li>
-				<li>
-					<div class="ld-task-buff-line"></div>
-				</li>
-				<li>
-					<span>3</span>
-				</li>
-			</ul>
-			<ul class="ld-task-buff-txt">
-				<li class="current"><strong>已接单</strong></li>
-				<li><strong>完成待确认</strong></li>
-				<li><strong>已完成</strong></li>
-			</ul>
-    	</eq>
-    	<eq name="userGeted['quest_status']" value="3">
-    		<ul>
-				<li class="current">
-					<span>1</span>
-				</li>
-				<li class="current">
-					<div class="ld-task-buff-line"></div>
-				</li>
-				<li class="current">
-					<span>2</span>
-				</li>
-				<li class="current">
-					<div class="ld-task-buff-line"></div>
-				</li>
-				<li>
-					<span>3</span>
-				</li>
-			</ul>
-			<ul class="ld-task-buff-txt">
-				<li class="current"><strong>已接单</strong></li>
-				<li class="current"><strong>完成待确认</strong></li>
-				<li><strong>已完成</strong></li>
-			</ul>
-    	</eq>
-    	<eq name="userGeted['quest_status']" value="4">
-    		<ul>
-				<li class="current">
-					<span>1</span>
-				</li>
-				<li class="current">
-					<div class="ld-task-buff-line"></div>
-				</li>
-				<li class="current">
-					<span>2</span>
-				</li>
-				<li class="current">
-					<div class="ld-task-buff-line"></div>
-				</li>
-				<li class="current">
-					<span>3</span>
-				</li>
-			</ul>
-			<ul class="ld-task-buff-txt">
-				<li class="current"><strong>已接单</strong></li>
-				<li class="current"><strong>完成待确认</strong></li>
-				<li class="current"><strong>已完成</strong></li>
-			</ul>
-    	</eq>
+        <eq name="userGeted['quest_status']" value="2">
+        <ul>
+            <li class="current">
+                <span>1</span>
+            </li>
+            <li class="current">
+                <div class="ld-task-buff-line"></div>
+            </li>
+            <li>
+                <span>2</span>
+            </li>
+            <li>
+                <div class="ld-task-buff-line"></div>
+            </li>
+            <li>
+                <span>3</span>
+            </li>
+        </ul>
+        <ul class="ld-task-buff-txt">
+            <li class="current"><strong>已接单</strong></li>
+            <li><strong>完成待确认</strong></li>
+            <li><strong>已完成</strong></li>
+        </ul>
+        </eq>
+        <eq name="userGeted['quest_status']" value="3">
+        <ul>
+            <li class="current">
+                <span>1</span>
+            </li>
+            <li class="current">
+                <div class="ld-task-buff-line"></div>
+            </li>
+            <li class="current">
+                <span>2</span>
+            </li>
+            <li class="current">
+                <div class="ld-task-buff-line"></div>
+            </li>
+            <li>
+                <span>3</span>
+            </li>
+        </ul>
+        <ul class="ld-task-buff-txt">
+            <li class="current"><strong>已接单</strong></li>
+            <li class="current"><strong>完成待确认</strong></li>
+            <li><strong>已完成</strong></li>
+        </ul>
+        </eq>
+        <eq name="userGeted['quest_status']" value="4">
+        <ul>
+            <li class="current">
+                <span>1</span>
+            </li>
+            <li class="current">
+                <div class="ld-task-buff-line"></div>
+            </li>
+            <li class="current">
+                <span>2</span>
+            </li>
+            <li class="current">
+                <div class="ld-task-buff-line"></div>
+            </li>
+            <li class="current">
+                <span>3</span>
+            </li>
+        </ul>
+        <ul class="ld-task-buff-txt">
+            <li class="current"><strong>已接单</strong></li>
+            <li class="current"><strong>完成待确认</strong></li>
+            <li class="current"><strong>已完成</strong></li>
+        </ul>
+        </eq>
         <div class="ld-task-sub">
             <eq name="userGeted.quest_status" value="2"><a class="ld-btn-push confirm_done_quest" href="javascript:void(0);" class="confirm_done_quest" qid="{$userGeted['quest_id']}" title="提交任务">提交任务</a></eq>
             <eq name="userGeted.quest_status" value="3"><a href="javascript:void(0);" class="cannot" title="该任务已提交">该任务已提交</a></eq>
@@ -314,7 +314,7 @@
                     if (200 == msg.code) {
                         var html = "";
                         $.each(msg.data, function (i, item) {
-                            html += '<div class="ld-task-item"><div class="ld-task-l"><dl><dt class="ld-user-avatars"><a href="' + item.sgkeyUrl + '"><img src="__STATIC__/assets/img/temp/img-user.jpg"/></a></dt></dl></div><div class="ld-task-r"><div class="ld-task-title"><h4><a class="ld-task-h4" href="">' + '' + item.user_name + '</a></h4></div><p class="ld-task-info-m">' + item.content + ' </p></div></div>';
+                            html += '<div class="ld-task-item"><div class="ld-task-l"><dl><dt class="ld-user-avatars"><a href="' + item.sgkeyUrl + '"><img src="' + item.headimg + '"/></a></dt></dl></div><div class="ld-task-r"><div class="ld-task-title"><h4><a class="ld-task-h4" href="">' + '' + item.user_name + '</a></h4></div><p class="ld-task-info-m">' + item.content + ' </p></div></div>';
                         });
                     } else {
                         //alert(msg.msg);

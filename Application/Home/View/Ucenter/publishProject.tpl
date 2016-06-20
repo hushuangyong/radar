@@ -65,11 +65,11 @@
                                         <option value="0">请选择</option>
                                         <foreach name='userAddressArr' item='list'>
                                             <option value="{$list.address_id}"<php> if($userPublished['address_id'] == $list['address_id']){
-                                                echo " selected = 'selected' ";} </php>>编号：{$list.address_id}/收货人：{$list.name}&nbsp;联系电话：{$list.telephone}&nbsp;地址：{$list.province}{$list.city}{$list.distin}{$list.address_info}&nbsp;<br />邮编：{$list.postcode}</option>
+                                                echo " selected = 'selected' ";} </php>>收货人：{$list.name}&nbsp;联系电话：{$list.telephone}&nbsp;地址：{$list.province}{$list.city}{$list.distin}{$list.address_info}</option>
                                         </foreach>
                                     </select>
                                     <else />
-                                    <span>您没有默认地址，<a href="{$pageUrl['userAddress']}">现在就去设置</a></span>
+                                    <span>您没有默认地址，<a href="{$pageUrl['addAddress']}">现在就去设置</a></span>
                                 </if>
                             </div>
                         </li>

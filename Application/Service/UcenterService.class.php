@@ -12,7 +12,7 @@ class UcenterService extends Model {
             return FALSE;
         }
         $data = M('User', 'radar_', 'DB_DTD');
-        $result = $data->field('p1.`id` ,p1.`username`,p1.`password` , p1.`email` ,p1.`regtime`,p1.`last_login`,p1.`login_ip`, p1.`nickname` , p1.`sex` ,p1.`headimgurl`  ,p2.`school_id`,p2.`level`,p2.`point`,p2.`vip`,p3.`name` AS `school_name` ')->alias('p1')->join('`radar_user_ex` p2 on p1.`id` = p2.`user_id`', 'LEFT')->join("`radar_school` p3 ON p2.`school_id` = p3.id ", 'LEFT')->where("p1.`id` = '%d'", array($user_id))->find();
+        $result = $data->field('p1.`id` ,p1.`username`,p1.`password` , p1.`email` ,p1.`regtime`,p1.`last_login`,p1.`login_ip`, p1.`realname` , p1.`openid` , p1.`nickname` , p1.`sex` ,p1.`headimgurl`  ,p2.`school_id`,p2.`level`,p2.`point`,p2.`vip`,p3.`name` AS `school_name` ')->alias('p1')->join('`radar_user_ex` p2 on p1.`id` = p2.`user_id`', 'LEFT')->join("`radar_school` p3 ON p2.`school_id` = p3.id ", 'LEFT')->where("p1.`id` = '%d'", array($user_id))->find();
         return $result;
     }
 
@@ -253,11 +253,16 @@ class UcenterService extends Model {
      */
     public static function getUserGetedDetail($quest_id, $user_id) {
         $data = M('Quest', 'radar_', 'DB_DTD');
-        $result = $data->field('quest_id,public_user_id,quest_title,quest_range,`end_time` ,quest_class,p3.`address_info` AS quest_address,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time, p3.`name` AS `receive_name` ,p3.`telephone` ,p3.`province`, p3.`city`, p3.`distin` , users.`username` AS public_username')->alias('p1')->join('left join `radar_user` users on p1.`public_user_id` = users.`id` ')->join('left join `radar_address` p3 on p1.`address_id` = p3.`address_id` ')->where("`order_user_id` = '%d' and `quest_id` = '%d'", array($user_id, $quest_id))->find();
+        $result = $data->field('quest_id,public_user_id,quest_title,quest_range,`end_time` ,quest_class,p3.`address_info` AS quest_address,quest_intro,quest_reward,quest_reward_type,quest_pic,quest_status,public_time,order_user_id,order_time, p3.`name` AS `receive_name` ,p3.`telephone` ,p3.`province`, p3.`city`, p3.`distin` , users.`username` AS public_username , users.`headimgurl` ')->alias('p1')->join('left join `radar_user` users on p1.`public_user_id` = users.`id` ')->join('left join `radar_address` p3 on p1.`address_id` = p3.`address_id` ')->where("`order_user_id` = '%d' and `quest_id` = '%d'", array($user_id, $quest_id))->find();
 
         if (!empty($result) && is_array($result)) {
             $result['dateline'] = ($result['end_time'] > time()) ? $result['end_time'] - time() : '0'; #剩余时间
-            $result['quest_address'] = $result['province'] . '省(直辖市)' . $result['city'] . $result['distin'] . $result['quest_address']; #省区市-地址
+            $result['quest_address'] = $result['province'] . '&nbsp;' . $result['city'] . '&nbsp;' . $result['distin'] . $result['quest_address']; #省区市-地址
+            if (empty($result['headimgurl'])) {
+                $result['headimg'] = "/Public/assets/img/temp/img-user.jpg"; #发布人的头像
+            } else {
+                $result['headimg'] = trim($result['headimgurl']); #发布人的头像
+            }
         }
         return $result;
     }
@@ -398,7 +403,7 @@ class UcenterService extends Model {
      */
     public static function getCollection($user_id) {
         $data = M('Quest', 'radar_', 'DB_DTD');
-        $result = $data->field('p1.`quest_id`, p1.`quest_title`, p1.`quest_range`, p1.`end_time`, p1.`quest_class`, p1.`address_id`, p1.`quest_reward`, p1.`quest_reward_type`, p1.`quest_intro`, p1.`quest_pic`, p1.`quest_status`, p1.`public_time`, p1.`public_user_id`, p1.`order_time`, p1.`order_user_id` ,p2.quest_id, user.`username` AS public_username')->alias('p1')->join("inner join `radar_collection` as p2 on p2.`quest_id` = p1.`quest_id`")->join('left join `radar_user` user on p1.`public_user_id` = user.`id` ')->where("p2.`user_id` = '{$user_id}' ")->select();
+        $result = $data->field('p1.`quest_id`, p1.`quest_title`, p1.`quest_range`, p1.`end_time`, p1.`quest_class`, p1.`address_id`, p1.`quest_reward`, p1.`quest_reward_type`, p1.`quest_intro`, p1.`quest_pic`, p1.`quest_status`, p1.`public_time`, p1.`public_user_id`, p1.`order_time`, p1.`order_user_id` ,p2.quest_id, user.`username` AS public_username , user.`headimgurl` ')->alias('p1')->join("inner join `radar_collection` as p2 on p2.`quest_id` = p1.`quest_id`")->join('left join `radar_user` user on p1.`public_user_id` = user.`id` ')->where("p2.`user_id` = '{$user_id}' ")->select();
         if (is_array($result)) {
             foreach ($result as $key => $value) {
                 if (1 == $value['quest_reward_type']) {
@@ -415,6 +420,11 @@ class UcenterService extends Model {
                 $result[$key]['user_id'] = UcenterService::isCollection($user_id, $value['quest_id']); #是否收藏
                 $result[$key]['dateline'] = ($value['end_time'] > time()) ? ( $value['end_time'] - time()) : 0; #剩余时间
                 $result[$key]['userPublishedimg'] = UcenterService::getUserPublishedDetailImg($value['quest_id'], 4); #项目图片
+                if (empty($value['headimgurl'])) {
+                    $result[$key]['headimg'] = "/Public/assets/img/temp/img-user.jpg"; #发布人的头像
+                } else {
+                    $result[$key]['headimg'] = trim($value['headimgurl']); #发布人的头像
+                }
             }
         }
         return $result;
@@ -439,7 +449,17 @@ class UcenterService extends Model {
     //通过 user_id 获取个人的关注列表	
     public static function getFollow($user_id) {
         $data = M('follow', 'radar_', 'DB_DTD');
-        $result = $data->field('p1.`id`,p2.username,p2.password,p2.id AS `user_id`')->alias('p1')->join("inner join `radar_user` as p2 on p2.`id` = p1.`h_user_id`")->where("p1.`m_user_id` = '{$user_id}' ")->select();
+        $result = $data->field('p1.`id`,p2.username,p2.`realname`, p2.`nickname` ,p2.id AS `user_id` , p2.`headimgurl` ')->alias('p1')->join("inner join `radar_user` as p2 on p2.`id` = p1.`h_user_id`")->where("p1.`m_user_id` = '{$user_id}' ")->select();
+        if (is_array($result)) {
+            foreach ($result as $key => $value) {
+                $result[$key]['username'] = phone_number_mask($value['username']); #处理手机号
+                if (empty($value['headimgurl'])) {
+                    $result[$key]['headimg'] = "/Public/assets/img/temp/img-user.jpg"; #发布人的头像
+                } else {
+                    $result[$key]['headimg'] = trim($value['headimgurl']); #发布人的头像
+                }
+            }
+        }
         return $result;
     }
 
@@ -503,11 +523,16 @@ class UcenterService extends Model {
     public static function getComment($paramArr = array()) {
         $data = M('comment', 'radar_', 'DB_DTD');
         $map['quest_id'] = $paramArr['quest_id'];
-        $result = $data->field('*')->alias('cmt')->where($map)->order('id desc,status')->select();
+        $result = $data->field('cmt.* , user.`nickname`, user.`headimgurl`')->alias('cmt')->join('left join `radar_user` user on cmt.`user_id` = user.`id` ')->where($map)->order('id desc,status')->select();
         if (is_array($result)) {
             foreach ($result as $key => $value) {
                 $result[$key]['sgkeyUrl'] = U('Index/radar', array('sgkey' => dtd_encrypt($value['user_id']))); # 该用户发布的项目
                 $result[$key]['user_name'] = phone_number_mask($value['user_name']); #处理手机号
+                if (empty($value['headimgurl'])) {
+                    $result[$key]['headimg'] = "/Public/assets/img/temp/img-user.jpg"; #发布人的头像
+                } else {
+                    $result[$key]['headimg'] = trim($value['headimgurl']); #发布人的头像
+                }
             }
         }
 

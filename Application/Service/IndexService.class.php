@@ -120,7 +120,7 @@ class IndexService extends Model {
      * @author Forest King <86721071@qq.com>
      * @date 2016-06-16 10:11
      */
-    public static function modifyUserInfo($mobile, $email, $school) {
+    public static function modifyUserInfo($mobile, $email, $school, $realname) {
         $userModel = M('User', 'radar_', 'DB_DTD');
         $userModel_ex = M('UserEx', 'radar_', 'DB_DTD');
 
@@ -128,7 +128,7 @@ class IndexService extends Model {
         $userModel->startTrans();
 
         #用户信息
-        $user_info = array('username' => $mobile, 'email' => $email,);
+        $user_info = array('username' => $mobile, 'email' => $email, 'realname' => $realname,);
         $user = $userModel->where(" `id` = '%s' ", array(session('user_id')))->save($user_info);
 
         #扩展信息
