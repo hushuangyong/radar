@@ -109,7 +109,7 @@
             </ul>
         </div>
     </div>
-    <div class="operation" style="position: relative;text-align: center;bottom: 3.4em; height: 30px; line-height: 30px; background: #f3f5f9;">
+    <div class="operation" style="position: relative;text-align: center;bottom: 1.0em; height: 30px; line-height: 30px; background: #f3f5f9;">
         <a href="javascript:void(0);" class="load_more" style="display: block;" title="点击加载">加载更多</a>
         <a href="#" class="loading" id="loading" style="display:none;">加载中。。。</a>
         <input type="hidden" id="hidePage" name="hidePage" value="1" />
