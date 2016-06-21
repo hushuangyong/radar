@@ -199,7 +199,7 @@ class IndexController extends Controller {
                             $result['info'] = $returnUrl ? $returnUrl : U('Ucenter/index');
                             session('user_id', $userInfo['id']);
                             cookie('radar_userid', $userInfo['id'], 3600 * 24 * 7);
-                            IndexService::updateUserInfo($mobile, array('last_login' => time(), 'login_ip' => ip_address())); //登录成功后，更新用户信息
+                            IndexService::updateUserInfo($userInfo['id'], array('last_login' => time(), 'login_ip' => ip_address())); //登录成功后，更新用户信息
                         } else {
                             $result['code'] = 501;
                             $result['msg'] = '手机或密码错误~';
@@ -266,7 +266,7 @@ class IndexController extends Controller {
      */
     public function radar() {
         trace($this->user_id, '当前用户ID');
-        if($this->user_id && FALSE == inspectuser($this->user_info)) {
+        if ($this->user_id && FALSE == inspectuser($this->user_info)) {
             $this->error('您的个人信息需要补全。', U('Ucenter/setting'), 3);
         }
         //获取项目列表
@@ -328,6 +328,7 @@ class IndexController extends Controller {
             $this->redis->set('red_user_id_' . $register, $register, C('DATA_CACHE_TIME'));
             session('user_id', $register);
             cookie('radar_userid', $register, 3600 * 24 * 7);
+            IndexService::updateUserInfo($register, array('last_login' => time(), 'login_ip' => ip_address())); //登录成功后，更新用户信息
             // 登录成功后就跳转
             $this->success($newUser . '您已经以微信身份“' . $authorize['nickname'] . '”登录～', $refer ? $refer : U('Index/radar'), 3);
         }

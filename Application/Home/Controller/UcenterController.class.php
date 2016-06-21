@@ -1151,6 +1151,18 @@ class UcenterController extends Controller {
                     $result['code'] = 402;
                     $result['msg'] = '邮箱格式错误~';
                 } else {
+                    if ($username != $this->userInfo['username']) {
+                        $userInfo = IndexService::getUserInfo($username);
+                        if (!empty($userInfo)) {
+                            $this->ajaxreturn(array('code' => 301, 'msg' => '你填写的手机号已被占用！请重新输入！'));
+                        }
+                    }
+                    if ($email != $this->userInfo['email']) {
+                        $emailInfo = IndexService::getUserInfoByEmail($email);
+                        if (!empty($emailInfo)) {
+                            $this->ajaxreturn(array('code' => 302, 'msg' => '你填写的邮箱地址已被占用！请重新输入！'));
+                        }
+                    }
                     $flag = IndexService::modifyUserInfo($username, $email, $school, $realname);
                     if (TRUE == $flag) {
                         $result['code'] = 200;

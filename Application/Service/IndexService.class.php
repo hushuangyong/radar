@@ -72,19 +72,19 @@ class IndexService extends Model {
     }
 
     /**
-     * 更新用户信息
+     * 根据用户id更新用户信息
      * @author Forest King <86721071@qq.com>
      * @date 2016-02-01 14:53
-     * @param string $username 用户名-手机号
+     * @param string $userId 用户id-自增编号
      * @param array $data 要更新的数据
      * @return boolean
      */
-    public static function updateUserInfo($username, $data = array()) {
-        if (empty($username) || !is_array($data)) {
+    public static function updateUserInfo($userId, $data = array()) {
+        if (empty($userId) || !is_array($data)) {
             return FALSE;
         }
         $model = M('user', 'radar_', 'DB_DTD');
-        $result = $model->where(" `username` = '%s' ", array($username))->save($data);
+        $result = $model->where(" `id` = '%s' ", array($userId))->save($data);
         return $result;
     }
 
