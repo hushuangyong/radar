@@ -317,7 +317,8 @@ class IndexController extends Controller {
         if (!empty($authorize['openid'])) {
             $userinfo = IndexService::getUserInfoByOPENID($authorize['openid']);
             if (empty($userinfo)) {
-                $register = IndexService::regist('', '', '', -1, $authorize['openid'], $authorize['nickname'], $authorize['sex'], $authorize['province'], $authorize['city'], $authorize['country'], $authorize['headimgurl'], serialize($authorize['privilege']), $authorize['unionid']);
+                $nickname = match_chinese($authorize['nickname']);
+                $register = IndexService::regist('', '', '', -1, $authorize['openid'], $nickname, $authorize['sex'], $authorize['province'], $authorize['city'], $authorize['country'], $authorize['headimgurl'], serialize($authorize['privilege']), $authorize['unionid']);
                 $newUser = "你在校园雷达的用户编号：" . $register . "<br />";
                 $refer = U('Ucenter/setting');
             } else {
