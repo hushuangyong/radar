@@ -52,7 +52,7 @@
                             <span class="ld-task-from-l">登录IP</span>
                             <div class="ld-task-from-r">
                                 {$user_info.login_ip}
-                                <script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"type="text/ecmascript"></script>
+                                <script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js&ip={$user_info.login_ip}"type="text/ecmascript"></script>
                                 <script type="text/javascript">
                                     document.write(remote_ip_info["country"] + "," + remote_ip_info["province"] + " " + ',' + remote_ip_info["city"] + " " + remote_ip_info["district"]);
                                 </script>
@@ -72,7 +72,7 @@
                                         <foreach name='schoolList' item='list'>
                                             <option value="{$list.id}" title='{$list.name}' <eq name="$list.id" value="$user_info.school_id">selected="selected"</eq> >{$list.name}</option>
                                         </foreach>
-                                    </select><else />{$user_info.school_name|default="这家伙很懒，什么也没留下"}<input type="hidden" name="school" id="school" value="{$user_info.school_id}" /></if>
+                                    </select><br /><font size="" color="#ff0000">仅能修改一次、请谨慎选择</font><else />{$user_info.school_name|default="这家伙很懒，什么也没留下"}<input type="hidden" name="school" id="school" value="{$user_info.school_id}" /></if>
                             </div>
                         </li>
 

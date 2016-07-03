@@ -167,7 +167,7 @@ class UcenterController extends Controller {
             }else {
                 $user_info = unserialize($user_info_hc);
             }
-            //dump($user_info);
+            $user_info['nickname'] = match_chinese($user_info['nickname'], 'decode'); #取出被JSON化的字符并还原
             return $user_info;
         } else {
             return false;

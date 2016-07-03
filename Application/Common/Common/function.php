@@ -445,12 +445,18 @@ function inspectuser($param = array()) {
 /**
  * 仅匹配中英文及数字
  * @param string $chars 输入字符
- * @param string $encoding 编码
+ * @param string $encoding 是否编码
  * @return string 返回过滤后的字符
  */
-function match_chinese($chars, $encoding = 'utf8') {
-    $pattern = ($encoding == 'utf8') ? '/[\x{4e00}-\x{9fa5}a-zA-Z0-9]/u' : '/[\x80-\xFF]/';
-    preg_match_all($pattern, $chars, $result);
-    $data = join('', $result[0]);
+function match_chinese($chars, $encoding = 'encode') {
+    if ($encoding == 'encode') {
+        $data = json_encode($chars);
+    } else {
+        if (strpos($chars, '"\u') !== false) {
+            $data = json_decode(preg_replace("#(\\\ue[0-9a-f]{3})#ie", "addslashes('\\1')", $chars));
+        } else {
+            $data = trim($chars);
+        }
+    }
     return $data;
 }
