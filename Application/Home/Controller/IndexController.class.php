@@ -310,8 +310,9 @@ class IndexController extends Controller {
         $authorize = $wechat->getUserInfo(); #第四步：拉取用户信息(需scope为 snsapi_userinfo)
 
         if ($authorize['errcode'] == 41001) {
-            $wechat->createOauthUrlForOpenid();
-            $this->error($authorize['errcode'] . "：" . $authorize['errmsg']);
+			redirect(U(CONTROLLER_NAME . "/radar", '', TRUE, TRUE), 0, '页面跳转中...');
+            //$wechat->createOauthUrlForOpenid();
+            //$this->error($authorize['errcode'] . "：" . $authorize['errmsg']);
             exit();
         }
         if (!empty($authorize['openid'])) {
